@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="nav_view_elements">
+        <item name="android:layout_marginTop">@dimen/nav_view_elements_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/nav_view_elements_margin_start</item>
+    </style>
+
+
+    <dimen name="nav_view_elements_margin_start">20dp</dimen>
+    <dimen name="nav_view_elements_margin_top">10dp</dimen>
+</resources>
