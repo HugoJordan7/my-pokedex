@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyPokedex</string>
+    <string name="app_information">Informações do app</string>
+    <string name="home">Início</string>
+    <string name="search">Buscar</string>
+    <string name="about">Sobre</string>
+    <string name="unknown_pokemon">Quem é esse pokemon?</string>
+    <string name="app_developer">Powered by H. Jordan</string>
 </resources>

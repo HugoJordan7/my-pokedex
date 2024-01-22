@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/home_fragment"
+            android:title="@string/home"
+            android:icon="@drawable/home"/>
+        <item android:id="@+id/fragment_unknown_pokemon"
+            android:title="@string/unknown_pokemon"
+            android:icon="@drawable/unknown_quiz"/>
+    </group>
+
+    <item android:title="@string/about">
+        <menu>
+            <item android:title="@string/app_information"/>
+        </menu>
+    </item>
+
+</menu>
