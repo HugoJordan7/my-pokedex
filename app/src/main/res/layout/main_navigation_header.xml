@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light_blue"
+    android:background="@drawable/navigation_header_gradient"
     android:orientation="vertical">
 
     <ImageView
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/nav_view_elements"
-        android:textColor="@color/red"/>
+        android:textColor="@color/white"/>
 
 
 </LinearLayout>
