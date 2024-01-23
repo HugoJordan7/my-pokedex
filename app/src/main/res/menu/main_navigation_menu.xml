@@ -14,7 +14,8 @@
 
     <item android:title="@string/about">
         <menu>
-            <item android:title="@string/app_information"/>
+            <item android:title="@string/app_information"
+                android:icon="@drawable/info"/>
         </menu>
     </item>
 
