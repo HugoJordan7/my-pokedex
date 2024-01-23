@@ -5,10 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <fragment
-        android:id="@+id/main_nav_fragment_controller"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:id="@+id/main_nav_host_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph=""/>
+        app:navGraph="@navigation/main_navigation"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
