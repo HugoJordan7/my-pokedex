@@ -4,13 +4,13 @@
     android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/navigation_header_gradient"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="bottom|center">
 
     <ImageView
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/baseball"
-        style="@style/nav_view_elements"/>
+        android:layout_height="120dp"
+        android:src="@drawable/my_pokedex_logo"/>
 
     <TextView
         android:text="@string/app_name"
