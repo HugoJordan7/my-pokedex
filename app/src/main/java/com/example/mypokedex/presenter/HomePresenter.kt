@@ -28,6 +28,34 @@ class HomePresenter(override var view: HomeContract.View) : HomeContract.Present
                 secondType = "flying"
             ),
             Pokemon(
+                id = 93,
+                name = "Hanter",
+                iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/93.png",
+                primaryType = "ghost",
+                secondType = "poison"
+            ),
+            Pokemon(
+                id = 9999,
+                name = "blastoise",
+                iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
+                primaryType = "water",
+                secondType = "normal"
+            ),
+            Pokemon(
+                id = 2,
+                name = "ivysaur",
+                iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png",
+                primaryType = "grass",
+                secondType = "poison"
+            ),
+            Pokemon(
+                id = 150,
+                name = "charizard",
+                iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/6.png",
+                primaryType = "fire",
+                secondType = "flying"
+            ),
+            Pokemon(
                 id = 9999,
                 name = "blastoise",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",

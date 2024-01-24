@@ -13,8 +13,16 @@
     <color name="red">#FF0000</color>
     <color name="transparent_green">#232FFF00</color>
 
-    <color name="black_border">#FF000000</color>
     <color name="black_transparent_1">#80000000</color>
     <color name="black_transparent_2">#59000000</color>
     <color name="black_transparent_3">#33000000</color>
+
+    <color name="red_transparent_1">#80FF0000</color>
+    <color name="red_transparent_2">#59FF0000</color>
+    <color name="red_transparent_3">#33FF0000</color>
+
+    <color name="purple_transparent_1">#99673AB7</color>
+    <color name="purple_transparent_2">#4D673AB7</color>
+    <color name="purple_transparent_3">#33673AB7</color>
+
 </resources>
