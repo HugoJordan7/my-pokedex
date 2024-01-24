@@ -11,4 +11,5 @@
     <color name="blue_500">#004FED</color>
     <color name="blue_700">#002877</color>
     <color name="red">#FF0000</color>
+    <color name="transparent_green">#232FFF00</color>
 </resources>

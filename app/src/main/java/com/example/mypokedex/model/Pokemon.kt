@@ -4,5 +4,6 @@ data class Pokemon(
     var id: Int,
     var name: String,
     var iconUrl: String,
-    var listType: List<String>
+    var primaryType: String,
+    var secondType: String?
 )
