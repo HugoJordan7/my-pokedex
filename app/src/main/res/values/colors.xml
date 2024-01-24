@@ -12,4 +12,9 @@
     <color name="blue_700">#002877</color>
     <color name="red">#FF0000</color>
     <color name="transparent_green">#232FFF00</color>
+
+    <color name="black_border">#FF000000</color>
+    <color name="black_transparent_1">#80000000</color>
+    <color name="black_transparent_2">#59000000</color>
+    <color name="black_transparent_3">#33000000</color>
 </resources>

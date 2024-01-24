@@ -45,7 +45,7 @@ class PokemonItem(var pokemon: Pokemon): Item<PokemonItem.PokemonViewHolder>() {
             "dark" -> primaryType.setImageResource(R.drawable.dark_type)
             "fairy" -> primaryType.setImageResource(R.drawable.fairy_type)
         }
-        if(pokemon.secondType != null){
+        if(pokemon.secondType == null){
 
         }else{
             when(pokemon.secondType?.toLowerCase()){

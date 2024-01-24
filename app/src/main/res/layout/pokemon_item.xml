@@ -1,65 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="400dp"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/transparent_green"
-    android:layout_marginBottom="10dp"
-    android:layout_marginTop="10dp"
-    android:id="@+id/pokemon_item">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pokemon_item"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/shape_pokemon_item">
 
-    <TextView
-        android:id="@+id/pokemon_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+    <LinearLayout
+        android:id="@+id/linear_pokemon_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Venusaur"
-        android:layout_margin="20dp"
-        android:textSize="34sp"
-        android:textColor="@color/black"
-        android:textStyle="italic|bold"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_pokemon_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/pokemon_icon"
+            android:layout_width="170dp"
+            android:layout_height="200dp"
+            android:src="@drawable/poke3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/pokemon_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="#0003"
-        android:layout_margin="20dp"
-        android:textSize="32sp"/>
-
-    <ImageView
-        android:id="@+id/pokemon_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:src="@drawable/poke3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="15dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="#0003" />
+
+    <TextView
+        android:id="@+id/pokemon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/linear_pokemon_item"
+        tools:text="Venusaur" />
 
     <ImageView
         android:id="@+id/primary_type"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/grass_type"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_marginTop="30dp"
+        tools:src="@drawable/grass_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/linear_pokemon_item"
+        app:layout_constraintBottom_toTopOf="@id/second_type"/>
 
     <ImageView
         android:id="@+id/second_type"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/poison_type"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linear_pokemon_item"
+        tools:src="@drawable/poison_type" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

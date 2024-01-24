@@ -6,5 +6,5 @@
     <string name="about">Sobre</string>
     <string name="unknown_pokemon">Quem é esse pokemon?</string>
     <string name="app_developer">Powered by H. Jordan</string>
-    <string name="pokemon_id">#000%1$d</string>
+    <string name="pokemon_id">#%1$04d</string>
 </resources>
