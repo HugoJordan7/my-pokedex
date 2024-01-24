@@ -18,7 +18,7 @@ class PokemonItem(var pokemon: Pokemon): Item<PokemonItem.PokemonViewHolder>() {
         var pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
         Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.name
-        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = pokemon.id.toString()
+        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = viewHolder.itemView.context.getString(R.string.pokemon_id,pokemon.id)
         var primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)
         var secondType = viewHolder.itemView.findViewById<ImageView>(R.id.second_type)
         setPrimaryAndSecondPokemonType(pokemon,primaryType,secondType)
