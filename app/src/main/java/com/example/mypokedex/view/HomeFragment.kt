@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
@@ -26,6 +28,7 @@ class HomeFragment() : Fragment(), HomeContract.View {
     override lateinit var presenter: HomeContract.Presenter
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var progressBar: ProgressBar
     private var adapter = GroupieAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +50,7 @@ class HomeFragment() : Fragment(), HomeContract.View {
 
     override fun bindAllViews(view: View) {
         recyclerView = view.findViewById(R.id.rv_home_pokemon)
+        progressBar = view.findViewById(R.id.home_progress)
     }
 
     override fun showPokemon(listPokemon: List<PokemonItem>) {
@@ -55,4 +59,16 @@ class HomeFragment() : Fragment(), HomeContract.View {
     }
 
     override fun context() = requireContext()
+
+    override fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        progressBar.visibility = View.GONE
+    }
+
+    override fun showFailure(message: String) {
+        Toast.makeText(context(),message,Toast.LENGTH_SHORT).show()
+    }
 }

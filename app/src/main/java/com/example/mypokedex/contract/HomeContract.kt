@@ -12,12 +12,18 @@ interface HomeContract {
         fun bindAllViews(view: android.view.View)
         fun showPokemon(listPokemon: List<PokemonItem>)
         fun context(): Context
+        fun showProgressBar()
+        fun hideProgressBar()
+        fun showFailure(message: String)
     }
 
     interface Presenter{
         var view: View
         fun onStart(view: android.view.View)
         fun findAllPokemon()
+        fun onSuccess(response: List<Pokemon>)
+        fun onFailure(message: String)
+        fun onComplete()
     }
 
 }
