@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 
-
 class PokemonItem(
     var pokemon: Pokemon,
     var context: Context
@@ -37,7 +36,11 @@ class PokemonItem(
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = viewHolder.itemView.context.getString(R.string.pokemon_id,pokemon.id)
         var primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)
         var secondType = viewHolder.itemView.findViewById<ImageView>(R.id.second_type)
-        ProjectResources.setPrimaryAndSecondPokemonType(pokemon,primaryType,secondType)
+
+        ProjectResources.setImageByPokemonType(pokemon.primaryType,primaryType)
+        if(pokemon.secondType != null){
+            ProjectResources.setImageByPokemonType(pokemon.secondType!!,secondType)
+        }
 
         var gradient = GradientDrawable(
             GradientDrawable.Orientation.RIGHT_LEFT,
