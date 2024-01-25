@@ -18,52 +18,58 @@ class HomePresenter(override var view: HomeContract.View) : HomeContract.Present
                 name = "ivysaur",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png",
                 primaryType = "grass",
-                secondType = "poison"
+                secondType = "poison",
+                color = "green"
             ),
             Pokemon(
                 id = 150,
                 name = "charizard",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/6.png",
                 primaryType = "fire",
-                secondType = "flying"
+                secondType = "flying",
+                color = "red"
             ),
             Pokemon(
                 id = 93,
-                name = "Hanter",
+                name = "haunter",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/93.png",
                 primaryType = "ghost",
-                secondType = "poison"
+                secondType = "poison",
+                color = "purple"
             ),
             Pokemon(
                 id = 9999,
                 name = "blastoise",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
                 primaryType = "water",
-                secondType = "normal"
+                secondType = "normal",
+                color = "blue"
             ),
             Pokemon(
                 id = 2,
                 name = "ivysaur",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png",
                 primaryType = "grass",
-                secondType = "poison"
+                secondType = "poison",
+                color = "yellow"
             ),
             Pokemon(
                 id = 150,
                 name = "charizard",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/6.png",
                 primaryType = "fire",
-                secondType = "flying"
+                secondType = "flying",
+                color = "white"
             ),
             Pokemon(
                 id = 9999,
                 name = "blastoise",
                 iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
                 primaryType = "water",
-                secondType = "normal"
+                color = "pink"
             )
         )
-        var listItem = list.map { PokemonItem(it) }
+        var listItem = list.map { PokemonItem(it,view.context()) }
 
         view.showPokemon(listItem)
     }

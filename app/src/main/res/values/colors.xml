@@ -13,16 +13,37 @@
     <color name="red">#FF0000</color>
     <color name="transparent_green">#232FFF00</color>
 
-    <color name="black_transparent_1">#80000000</color>
-    <color name="black_transparent_2">#59000000</color>
-    <color name="black_transparent_3">#33000000</color>
+    <color name="black_transparent_1">#B3000000</color>
+    <color name="black_transparent_2">#80000000</color>
+    <color name="black_transparent_3">#1A000000</color>
 
-    <color name="red_transparent_1">#80FF0000</color>
-    <color name="red_transparent_2">#59FF0000</color>
-    <color name="red_transparent_3">#33FF0000</color>
+    <color name="blue_transparent_1">#CC0019FF</color>
+    <color name="blue_transparent_2">#800019FF</color>
+    <color name="blue_transparent_3">#1A0019FF</color>
 
-    <color name="purple_transparent_1">#99673AB7</color>
-    <color name="purple_transparent_2">#4D673AB7</color>
-    <color name="purple_transparent_3">#33673AB7</color>
+    <color name="green_transparent_1">#CC0ECC00</color>
+    <color name="green_transparent_2">#800ECC00</color>
+    <color name="green_transparent_3">#1A0ECC00</color>
+
+    <color name="pink_transparent_1">#CCFF00AA</color>
+    <color name="pink_transparent_2">#80FF00AA</color>
+    <color name="pink_transparent_3">#1AFF00AA</color>
+
+    <color name="purple_transparent_1">#CC673AB7</color>
+    <color name="purple_transparent_2">#80673AB7</color>
+    <color name="purple_transparent_3">#1A673AB7</color>
+
+    <color name="red_transparent_1">#CCFF0000</color>
+    <color name="red_transparent_2">#80FF0000</color>
+    <color name="red_transparent_3">#1AFF0000</color>
+
+    <color name="write_transparent_1">#CC00A189</color>
+    <color name="write_transparent_2">#8000A189</color>
+    <color name="write_transparent_3">#1A00A189</color>
+
+    <color name="yellow_transparent_1">#D9FFE500</color>
+    <color name="yellow_transparent_2">#80FFE500</color>
+    <color name="yellow_transparent_3">#1AFFE500</color>
+
 
 </resources>

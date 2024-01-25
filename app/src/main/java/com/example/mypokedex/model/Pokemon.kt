@@ -7,5 +7,6 @@ data class Pokemon(
     var name: String,
     var iconUrl: String,
     var primaryType: String,
-    var secondType: String?
+    var secondType: String? = null,
+    var color: String = "red"
 ): Serializable
