@@ -9,6 +9,13 @@ import com.example.mypokedex.R
 import com.example.mypokedex.model.Pokemon
 
 object ProjectResources {
+
+    fun getListOfPokemonId(firstId: Int, lastId: Int): List<Int>{
+        var list: MutableList<Int> = mutableListOf()
+        list.addAll(firstId .. lastId)
+        return list
+    }
+
     fun setImageByPokemonType(type: String, imageType: ImageView) {
         when (type.toLowerCase()) {
             "normal" -> imageType.setImageResource(R.drawable.normal_type)

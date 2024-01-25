@@ -1,12 +1,9 @@
 package com.example.mypokedex.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Pokemon(
-    var id: Int,
-    var name: String,
-    var iconUrl: String,
-    var primaryType: String,
-    var secondType: String? = null,
-    var color: String = "red"
+    var form: PokemonForm,
+    var specie: PokemonSpecie
 ): Serializable
