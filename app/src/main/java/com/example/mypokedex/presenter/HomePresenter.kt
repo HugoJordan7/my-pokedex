@@ -17,7 +17,13 @@ class HomePresenter(
     }
 
     override fun findAllPokemon(firstId: Int, lastId: Int) {
-        dataSource.findAllPokemon(this,firstId,lastId)
+        var first = 1
+        var lastCurrent = 20
+        while (lastCurrent <= lastId){
+            dataSource.findAllPokemon(this,first,lastCurrent)
+            first += 20
+            lastCurrent += 20
+        }
     }
 
     override fun onSuccess(response: List<Pokemon>) {
