@@ -7,7 +7,7 @@ data class PokemonForm(
     @SerializedName("id") var id: Int,
     @SerializedName("name") var name: String,
     @SerializedName("types") var listTypes: List<PokemonType>,
-    var iconUrl: String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$id.png",
+    var iconUrl: String = "",
 ): Serializable
 
 data class PokemonType(

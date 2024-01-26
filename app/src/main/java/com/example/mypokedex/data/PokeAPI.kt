@@ -9,8 +9,8 @@ import retrofit2.http.Query
 interface PokeAPI {
 
     @GET("pokemon-form/{id}")
-    fun findPokemonForm(id: Int): Call<PokemonForm>
+    fun findPokemonForm(@Path("id") id: Int): Call<PokemonForm>
 
     @GET("pokemon-species/{id}")
-    fun findPokemonSpecie( @Path("id") id: Int): Call<PokemonSpecie>
+    fun findPokemonSpecie(@Path("id") id: Int): Call<PokemonSpecie>
 }

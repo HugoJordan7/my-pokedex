@@ -25,8 +25,9 @@ class PokemonItem(
     override fun getLayout() = R.layout.pokemon_item
 
     override fun bind(viewHolder: PokemonViewHolder, position: Int) {
+        pokemon.form.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.form.id}.png"
         val pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
-        Picasso.get().load(pokemon.specie.color.name).into(pokemonIcon)
+        Picasso.get().load(pokemon.form.iconUrl).into(pokemonIcon)
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.form.name
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = viewHolder.itemView.context.getString(R.string.pokemon_id,pokemon.form.id)
         val primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)

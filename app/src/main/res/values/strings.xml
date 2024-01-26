@@ -7,4 +7,5 @@
     <string name="unknown_pokemon">Quem é esse pokemon?</string>
     <string name="app_developer">Powered by H. Jordan</string>
     <string name="pokemon_id">#%1$04d</string>
+    <string name="poke_search_error">"Error search data from server"</string>
 </resources>

@@ -22,6 +22,7 @@ import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.presenter.HomePresenter
 import com.xwray.groupie.GroupieAdapter
+import kotlinx.coroutines.runBlocking
 
 class HomeFragment() : Fragment(), HomeContract.View {
 
@@ -45,7 +46,7 @@ class HomeFragment() : Fragment(), HomeContract.View {
         presenter.onStart(view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
-        presenter.findAllPokemon(1,10)
+        presenter.findAllPokemon(1,200)
     }
 
     override fun bindAllViews(view: View) {
@@ -53,8 +54,8 @@ class HomeFragment() : Fragment(), HomeContract.View {
         progressBar = view.findViewById(R.id.home_progress)
     }
 
-    override fun showPokemon(listPokemon: List<PokemonItem>) {
-        adapter.addAll(listPokemon)
+    override fun showPokemon(pokemonList: List<PokemonItem>) {
+        adapter.addAll(pokemonList)
         adapter.notifyDataSetChanged()
     }
 

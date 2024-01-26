@@ -9,6 +9,8 @@ import com.example.mypokedex.R
 import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.model.PokemonForm
 import com.example.mypokedex.model.PokemonSpecie
+import retrofit2.Call
+import retrofit2.Response
 
 object ProjectResources {
 
@@ -18,13 +20,34 @@ object ProjectResources {
         return list
     }
 
-    fun mergeItemsOfPokemonList(listForm: List<PokemonForm>, listSpecie: List<PokemonSpecie>): List<Pokemon>{
+    fun checkPokemonListResponseError(
+        formCallList: List<Response<PokemonForm>>,
+        specieCallList: List<Response<PokemonSpecie>>
+    ): Boolean{
+        if (formCallList.size != specieCallList.size){
+            return true
+        }
+        for (i in formCallList.indices){
+            if(
+                (!formCallList[i].isSuccessful || formCallList[i].body() == null) ||
+                (!specieCallList[i].isSuccessful || specieCallList[i].body() == null)
+            ){
+                return true //With errors
+            }
+        }
+        return false //No errors
+    }
+
+    fun getPokemonList(listForm: List<PokemonForm?>, listSpecie: List<PokemonSpecie?>): List<Pokemon>{
         if(listForm.size != listSpecie.size){
             return emptyList()
         }
         var pokemonList: MutableList<Pokemon> = mutableListOf()
         for(i in listForm.indices){
-            pokemonList.add(Pokemon(listForm[i],listSpecie[i]))
+            if(listForm[i] == null || listSpecie[i] == null){
+                return emptyList()
+            }
+            pokemonList.add(Pokemon(listForm[i]!!,listSpecie[i]!!))
         }
         return pokemonList
     }

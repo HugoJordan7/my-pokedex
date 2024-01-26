@@ -1,12 +1,9 @@
 package com.example.mypokedex.presenter
 
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.data.PokemonRemoteDataSource
 import com.example.mypokedex.model.Pokemon
-import com.example.mypokedex.util.ProjectResources
 import com.example.mypokedex.view.PokemonItem
 
 class HomePresenter(
@@ -24,14 +21,12 @@ class HomePresenter(
     }
 
     override fun onSuccess(response: List<Pokemon>) {
-        var listItem = response.map { PokemonItem(it, view.context()) }
-        view.showPokemon(listItem)
-        onComplete()
+        var list = response.map { PokemonItem(it,view.context()) }
+        view.showPokemon(list)
     }
 
     override fun onFailure(message: String) {
         view.showFailure(message)
-        onComplete()
     }
 
     override fun onComplete() {
