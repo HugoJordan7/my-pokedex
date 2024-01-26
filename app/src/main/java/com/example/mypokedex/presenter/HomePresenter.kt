@@ -19,8 +19,8 @@ class HomePresenter(
         this.view.showProgressBar()
     }
 
-    override fun findAllPokemon() {
-        dataSource.findAllPokemon(this)
+    override fun findAllPokemon(firstId: Int, lastId: Int) {
+        dataSource.findAllPokemon(this,firstId,lastId)
     }
 
     override fun onSuccess(response: List<Pokemon>) {

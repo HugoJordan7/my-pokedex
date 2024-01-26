@@ -7,6 +7,8 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.example.mypokedex.R
 import com.example.mypokedex.model.Pokemon
+import com.example.mypokedex.model.PokemonForm
+import com.example.mypokedex.model.PokemonSpecie
 
 object ProjectResources {
 
@@ -14,6 +16,17 @@ object ProjectResources {
         var list: MutableList<Int> = mutableListOf()
         list.addAll(firstId .. lastId)
         return list
+    }
+
+    fun mergeItemsOfPokemonList(listForm: List<PokemonForm>, listSpecie: List<PokemonSpecie>): List<Pokemon>{
+        if(listForm.size != listSpecie.size){
+            return emptyList()
+        }
+        var pokemonList: MutableList<Pokemon> = mutableListOf()
+        for(i in listForm.indices){
+            pokemonList.add(Pokemon(listForm[i],listSpecie[i]))
+        }
+        return pokemonList
     }
 
     fun setImageByPokemonType(type: String, imageType: ImageView) {
@@ -55,7 +68,7 @@ object ProjectResources {
         return arrayId.map { ContextCompat.getColor(context,it) }.toIntArray()
     }
 
-    fun getMutableListPokemonTest() = mutableListOf<Pokemon>(
+    /*fun getMutableListPokemonTest() = mutableListOf<Pokemon>(
         Pokemon(
             id = 2,
             name = "ivysaur",
@@ -118,6 +131,6 @@ object ProjectResources {
             primaryType = "water",
             color = "black"
         )
-    )
+    )*/
 
 }

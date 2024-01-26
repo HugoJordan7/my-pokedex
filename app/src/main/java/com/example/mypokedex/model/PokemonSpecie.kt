@@ -10,4 +10,4 @@ data class PokemonSpecie(
 data class PokemonColor(
     @SerializedName("name") var name: String,
     @SerializedName("url") var url: String
-)
+): Serializable

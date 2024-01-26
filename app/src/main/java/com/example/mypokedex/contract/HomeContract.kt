@@ -22,7 +22,7 @@ interface HomeContract {
         var view: View
         var dataSource: PokemonRemoteDataSource
         fun onStart(view: android.view.View)
-        fun findAllPokemon()
+        fun findAllPokemon(firstId: Int, lastId: Int)
         fun onSuccess(response: List<Pokemon>)
         fun onFailure(message: String)
         fun onComplete()

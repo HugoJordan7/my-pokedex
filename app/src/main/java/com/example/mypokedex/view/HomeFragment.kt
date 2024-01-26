@@ -45,7 +45,7 @@ class HomeFragment() : Fragment(), HomeContract.View {
         presenter.onStart(view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
-        presenter.findAllPokemon()
+        presenter.findAllPokemon(1,10)
     }
 
     override fun bindAllViews(view: View) {
