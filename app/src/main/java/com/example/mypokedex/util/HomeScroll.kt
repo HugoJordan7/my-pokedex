@@ -6,7 +6,7 @@ import com.example.mypokedex.contract.HomeContract
 
 object HomeScroll {
 
-    const val RANGE = 50
+    const val RANGE = 100
 
     fun getScroll(presenter: HomeContract.Presenter) = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -14,7 +14,7 @@ object HomeScroll {
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
             val lastItem = layoutManager.findLastCompletelyVisibleItemPosition()
             val totalItemCount = layoutManager.itemCount
-            if (lastItem == totalItemCount - 1) {
+            if (lastItem == totalItemCount - 1  && totalItemCount < 1000) {
                 presenter.loadMorePokemon(lastItem + 2)
             }
         }

@@ -24,6 +24,7 @@ class HomePresenter(
     }
 
     override fun loadMorePokemon(currentId: Int) {
+        view.showProgressBar()
         var lastId = currentId + HomeScroll.RANGE-1
         findAllPokemon(currentId, lastId)
     }

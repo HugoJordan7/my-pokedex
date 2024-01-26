@@ -17,33 +17,33 @@
     <color name="black_transparent_2">#80000000</color>
     <color name="black_transparent_3">#1A000000</color>
 
-    <color name="blue_transparent_1">#CC1128FF</color>
-    <color name="blue_transparent_2">#801128FF</color>
-    <color name="blue_transparent_3">#1A1128FF</color>
+    <color name="blue_transparent_1">#E60019FF</color>
+    <color name="blue_transparent_2">#800019FF</color>
+    <color name="blue_transparent_3">#1A0019FF</color>
 
-    <color name="green_transparent_1">#CC0ECC00</color>
-    <color name="green_transparent_2">#800ECC00</color>
-    <color name="green_transparent_3">#1A0ECC00</color>
+    <color name="green_transparent_1">#E60ECF00</color>
+    <color name="green_transparent_2">#800ECF00</color>
+    <color name="green_transparent_3">#1A0ECF00</color>
 
-    <color name="pink_transparent_1">#CCFF34BB</color>
-    <color name="pink_transparent_2">#80FF34BB</color>
-    <color name="pink_transparent_3">#1AFF34BB</color>
+    <color name="pink_transparent_1">#E6FF00AA</color>
+    <color name="pink_transparent_2">#80FF00AA</color>
+    <color name="pink_transparent_3">#1AFF00AA</color>
 
-    <color name="purple_transparent_1">#CC673AB7</color>
-    <color name="purple_transparent_2">#80673AB7</color>
-    <color name="purple_transparent_3">#1A673AB7</color>
+    <color name="purple_transparent_1">#E65C00FF</color>
+    <color name="purple_transparent_2">#805C00FF</color>
+    <color name="purple_transparent_3">#1A5C00FF</color>
 
-    <color name="red_transparent_1">#CCFF1111</color>
-    <color name="red_transparent_2">#80FF1111</color>
-    <color name="red_transparent_3">#1AFF1111</color>
+    <color name="red_transparent_1">#E6FF0000</color>
+    <color name="red_transparent_2">#8CFF0000</color>
+    <color name="red_transparent_3">#1AFF0000</color>
 
-    <color name="write_transparent_1">#CC00A189</color>
+    <color name="write_transparent_1">#E603957F</color>
     <color name="write_transparent_2">#8000A189</color>
     <color name="write_transparent_3">#1A00A189</color>
 
-    <color name="yellow_transparent_1">#D9FFE500</color>
-    <color name="yellow_transparent_2">#80FFE500</color>
-    <color name="yellow_transparent_3">#1AFFE500</color>
+    <color name="yellow_transparent_1">#F2D5BE00</color>
+    <color name="yellow_transparent_2">#99D5BE00</color>
+    <color name="yellow_transparent_3">#1AD5BE00</color>
 
 
 </resources>

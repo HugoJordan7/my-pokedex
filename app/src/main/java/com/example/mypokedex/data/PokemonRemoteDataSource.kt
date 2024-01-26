@@ -24,15 +24,13 @@ class PokemonRemoteDataSource {
 
                 val formListResponses = formListDeferred.awaitAll()
                 val specieListResponses = specieListDeferred.awaitAll()
-
-                if (!ProjectResources.checkPokemonListResponseError(formListResponses, specieListResponses)) {
-                    val formList = formListResponses.map { it.body()!! }
-                    val specieList = specieListResponses.map { it.body()!! }
-                    val pokemonList = ProjectResources.getPokemonList(formList, specieList)
-                    presenter.onSuccess(pokemonList)
-                } else {
+                val formList = formListResponses.map { it.body()!! }
+                val specieList = specieListResponses.map { it.body()!! }
+                val pokemonList = ProjectResources.getPokemonList(formList, specieList)
+                if (pokemonList.isEmpty()) {
                     throw Exception(errorMessage)
                 }
+                presenter.onSuccess(pokemonList)
             } catch (e: Exception) {
                 presenter.onFailure(e.message ?: errorMessage)
             } finally {
