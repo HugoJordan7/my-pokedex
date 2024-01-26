@@ -1,17 +1,12 @@
 package com.example.mypokedex.view
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.alpha
-import androidx.core.graphics.toColor
 import com.example.mypokedex.R
-import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.util.ProjectResources
 import com.squareup.picasso.Picasso
@@ -20,7 +15,7 @@ import com.xwray.groupie.Item
 
 class PokemonItem(
     var pokemon: Pokemon,
-    var context: Context
+    private var context: Context
 ): Item<PokemonItem.PokemonViewHolder>() {
 
     inner class PokemonViewHolder(itemView: View): GroupieViewHolder(itemView)
@@ -30,21 +25,24 @@ class PokemonItem(
     override fun getLayout() = R.layout.pokemon_item
 
     override fun bind(viewHolder: PokemonViewHolder, position: Int) {
-        var pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
-        Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
-        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.name
-        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = viewHolder.itemView.context.getString(R.string.pokemon_id,pokemon.id)
-        var primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)
-        var secondType = viewHolder.itemView.findViewById<ImageView>(R.id.second_type)
+        val pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
+        Picasso.get().load(pokemon.specie.color.name).into(pokemonIcon)
+        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.form.name
+        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = viewHolder.itemView.context.getString(R.string.pokemon_id,pokemon.form.id)
+        val primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)
+        val secondType = viewHolder.itemView.findViewById<ImageView>(R.id.second_type)
 
-        ProjectResources.setImageByPokemonType(pokemon.primaryType,primaryType)
-        if(pokemon.secondType != null){
-            ProjectResources.setImageByPokemonType(pokemon.secondType!!,secondType)
+        val typeNameList = pokemon.form.listTypes
+        if(typeNameList.isNotEmpty()){
+            ProjectResources.setImageByPokemonType(typeNameList[0].name.name,primaryType)
+            if (typeNameList.size == 2){
+                ProjectResources.setImageByPokemonType(typeNameList[1].name.name,secondType)
+            }
         }
 
-        var gradient = GradientDrawable(
+        val gradient = GradientDrawable(
             GradientDrawable.Orientation.RIGHT_LEFT,
-            ProjectResources.getIntArrayColors(pokemon.color,context)
+            ProjectResources.getIntArrayColors(pokemon.specie.color.name,context)
         )
         gradient.cornerRadius = 90f
         viewHolder.itemView.findViewById<ConstraintLayout>(R.id.pokemon_item).background = gradient

@@ -120,7 +120,7 @@ object ProjectResources {
         Pokemon(
             id = 9999,
             name = "blastoise",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
+            iconUrl = "https://raw.githubu+sercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
             primaryType = "water",
             color = "pink"
         ),
