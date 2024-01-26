@@ -4,7 +4,10 @@ import android.view.View
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.data.PokemonRemoteDataSource
 import com.example.mypokedex.model.Pokemon
+import com.example.mypokedex.util.HomeScroll
+import com.example.mypokedex.util.ProjectResources
 import com.example.mypokedex.view.PokemonItem
+
 
 class HomePresenter(
     override var view: HomeContract.View,
@@ -17,17 +20,16 @@ class HomePresenter(
     }
 
     override fun findAllPokemon(firstId: Int, lastId: Int) {
-        var first = 1
-        var lastCurrent = 20
-        while (lastCurrent <= lastId){
-            dataSource.findAllPokemon(this,first,lastCurrent)
-            first += 20
-            lastCurrent += 20
-        }
+        dataSource.findAllPokemon(this, firstId, lastId)
+    }
+
+    override fun loadMorePokemon(currentId: Int) {
+        var lastId = currentId + HomeScroll.RANGE-1
+        findAllPokemon(currentId, lastId)
     }
 
     override fun onSuccess(response: List<Pokemon>) {
-        var list = response.map { PokemonItem(it,view.context()) }
+        var list = response.map { PokemonItem(it, view.context()) }
         view.showPokemon(list)
     }
 

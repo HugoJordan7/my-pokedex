@@ -21,10 +21,12 @@ import com.example.mypokedex.R
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.presenter.HomePresenter
+import com.example.mypokedex.util.HomeScroll
+import com.example.mypokedex.util.ProjectResources
 import com.xwray.groupie.GroupieAdapter
 import kotlinx.coroutines.runBlocking
 
-class HomeFragment() : Fragment(), HomeContract.View {
+class HomeFragment : Fragment(), HomeContract.View {
 
     override lateinit var presenter: HomeContract.Presenter
 
@@ -37,8 +39,12 @@ class HomeFragment() : Fragment(), HomeContract.View {
         presenter = HomePresenter(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +52,8 @@ class HomeFragment() : Fragment(), HomeContract.View {
         presenter.onStart(view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
-        presenter.findAllPokemon(1,200)
+        presenter.findAllPokemon(1, HomeScroll.RANGE)
+        recyclerView.addOnScrollListener(HomeScroll.getScroll(presenter))
     }
 
     override fun bindAllViews(view: View) {
@@ -70,6 +77,6 @@ class HomeFragment() : Fragment(), HomeContract.View {
     }
 
     override fun showFailure(message: String) {
-        Toast.makeText(context(),message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(context(), message, Toast.LENGTH_SHORT).show()
     }
 }

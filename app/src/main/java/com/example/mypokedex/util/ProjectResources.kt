@@ -5,7 +5,10 @@ import android.graphics.Color
 import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
+import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.model.PokemonForm
 import com.example.mypokedex.model.PokemonSpecie
@@ -14,7 +17,7 @@ import retrofit2.Response
 
 object ProjectResources {
 
-    fun getListOfPokemonId(firstId: Int, lastId: Int): List<Int>{
+    fun getListOfRangeId(firstId: Int, lastId: Int): List<Int>{
         var list: MutableList<Int> = mutableListOf()
         list.addAll(firstId .. lastId)
         return list
@@ -32,10 +35,10 @@ object ProjectResources {
                 (!formCallList[i].isSuccessful || formCallList[i].body() == null) ||
                 (!specieCallList[i].isSuccessful || specieCallList[i].body() == null)
             ){
-                return true //With errors
+                return true
             }
         }
-        return false //No errors
+        return false
     }
 
     fun getPokemonList(listForm: List<PokemonForm?>, listSpecie: List<PokemonSpecie?>): List<Pokemon>{
@@ -90,70 +93,5 @@ object ProjectResources {
         var arrayId = colorMap[pokemonColor.toLowerCase()] ?: colorMap["black"] as Array<Int>
         return arrayId.map { ContextCompat.getColor(context,it) }.toIntArray()
     }
-
-    /*fun getMutableListPokemonTest() = mutableListOf<Pokemon>(
-        Pokemon(
-            id = 2,
-            name = "ivysaur",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png",
-            primaryType = "grass",
-            secondType = "poison",
-            color = "green"
-        ),
-        Pokemon(
-            id = 150,
-            name = "charizard",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/6.png",
-            primaryType = "fire",
-            secondType = "flying",
-            color = "red"
-        ),
-        Pokemon(
-            id = 93,
-            name = "haunter",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/93.png",
-            primaryType = "ghost",
-            secondType = "poison",
-            color = "purple"
-        ),
-        Pokemon(
-            id = 9999,
-            name = "blastoise",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
-            primaryType = "water",
-            secondType = "normal",
-            color = "blue"
-        ),
-        Pokemon(
-            id = 2,
-            name = "ivysaur",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png",
-            primaryType = "grass",
-            secondType = "poison",
-            color = "yellow"
-        ),
-        Pokemon(
-            id = 150,
-            name = "charizard",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/6.png",
-            primaryType = "fire",
-            secondType = "flying",
-            color = "white"
-        ),
-        Pokemon(
-            id = 9999,
-            name = "blastoise",
-            iconUrl = "https://raw.githubu+sercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
-            primaryType = "water",
-            color = "pink"
-        ),
-        Pokemon(
-            id = 9999,
-            name = "blastoise",
-            iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
-            primaryType = "water",
-            color = "black"
-        )
-    )*/
 
 }

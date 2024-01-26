@@ -12,7 +12,7 @@ class PokemonRemoteDataSource {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
-                val listId = ProjectResources.getListOfPokemonId(firstId, lastId)
+                val listId = ProjectResources.getListOfRangeId(firstId, lastId)
 
                 val formListDeferred = listId.map {
                     async(Dispatchers.IO) { retrofit.findPokemonForm(it).execute() }
