@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +41,7 @@ class HomeFragment : Fragment(), HomeContract.View {
         presenter.onStart(view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = HomeAdapter.adapter
-        if (HomeAdapter.adapter.itemCount == 0){
+        if (HomeAdapter.adapter.itemCount == 0) {
             presenter.findAllPokemon(1, HomeScroll.RANGE)
         }
         recyclerView.addOnScrollListener(HomeScroll.getScroll(presenter))
@@ -72,6 +73,19 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search,menu)
-        super.onCreateOptionsMenu(menu, inflater)
+        val searchItem = menu.findItem(R.id.item_search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return true
+                }
+
+            }
+        )
     }
 }

@@ -2,7 +2,9 @@ package com.example.mypokedex.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -48,11 +50,10 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.menu_search -> {
-                supportActionBar?.setCustomView(R.layout.custom_search_view)
-                supportActionBar?.setDisplayShowCustomEnabled(true)
+            R.id.item_search -> {
                 true
             }
             else -> super.onOptionsItemSelected(item)
