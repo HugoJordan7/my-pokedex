@@ -36,6 +36,7 @@ class PokemonItem(
         val typeNameList = pokemon.form.listTypes
         ProjectResources.setImageByPokemonType(typeNameList[0].name.name, primaryType)
         if (typeNameList.size == 2) {
+            secondType.visibility = View.VISIBLE
             ProjectResources.setImageByPokemonType(typeNameList[1].name.name, secondType)
         } else {
             secondType.visibility = View.GONE

@@ -1,9 +1,7 @@
 package com.example.mypokedex.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -12,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.presenter.HomePresenter
+import com.example.mypokedex.util.HomeAdapter
 import com.example.mypokedex.util.HomeScroll
 import com.xwray.groupie.GroupieAdapter
 
@@ -21,11 +20,11 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
-    private var adapter = GroupieAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = HomePresenter(this)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -40,8 +39,10 @@ class HomeFragment : Fragment(), HomeContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.onStart(view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
-        presenter.findAllPokemon(1, HomeScroll.RANGE)
+        recyclerView.adapter = HomeAdapter.adapter
+        if (HomeAdapter.adapter.itemCount == 0){
+            presenter.findAllPokemon(1, HomeScroll.RANGE)
+        }
         recyclerView.addOnScrollListener(HomeScroll.getScroll(presenter))
     }
 
@@ -51,8 +52,8 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun showPokemon(pokemonList: List<PokemonItem>) {
-        adapter.addAll(pokemonList)
-        adapter.notifyDataSetChanged()
+        HomeAdapter.adapter.addAll(pokemonList)
+        HomeAdapter.adapter.notifyDataSetChanged()
     }
 
     override fun context() = requireContext()
@@ -67,5 +68,10 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun showFailure(message: String) {
         Toast.makeText(context(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_search,menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }

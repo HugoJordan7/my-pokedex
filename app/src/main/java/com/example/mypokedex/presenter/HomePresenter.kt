@@ -16,15 +16,14 @@ class HomePresenter(
 
     override fun onStart(view: View) {
         this.view.bindAllViews(view)
-        this.view.showProgressBar()
     }
 
     override fun findAllPokemon(firstId: Int, lastId: Int) {
+        view.showProgressBar()
         dataSource.findAllPokemon(this, firstId, lastId)
     }
 
     override fun loadMorePokemon(currentId: Int) {
-        view.showProgressBar()
         var lastId = currentId + HomeScroll.RANGE-1
         findAllPokemon(currentId, lastId)
     }
