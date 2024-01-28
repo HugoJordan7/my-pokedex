@@ -1,11 +1,14 @@
 package com.example.mypokedex.view
 
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.*
+import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
@@ -72,20 +75,31 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_search,menu)
+        inflater.inflate(R.menu.menu_search, menu)
         val searchItem = menu.findItem(R.id.item_search)
         val searchView = searchItem.actionView as SearchView
-        searchView.setOnQueryTextListener(
-            object : SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return true
-                }
-
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(context(),"search pokemon",Toast.LENGTH_SHORT).show()
+                return true
             }
-        )
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Toast.makeText(context(),"zzzzzz",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+        })
+        val editText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        editText.setHint(R.string.search)
+        editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        editText.setBackgroundResource(R.drawable.search_view_shape)
+        editText.setSingleLine()
+        editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(5))
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+    }
+
 }
