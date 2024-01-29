@@ -1,12 +1,14 @@
 package com.example.mypokedex.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.*
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.widget.ButtonBarLayout
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.marginBottom
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +26,11 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
+
+    private lateinit var searchBar: View
+    private lateinit var searchEditText: EditText
+    private lateinit var searchCloseButton: ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,22 +87,38 @@ class HomeFragment : Fragment(), HomeContract.View {
         val searchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Toast.makeText(context(),"search pokemon",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context(), "search pokemon", Toast.LENGTH_SHORT).show()
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Toast.makeText(context(),"zzzzzz",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context(), "zzzzzz", Toast.LENGTH_SHORT).show()
                 return true
             }
-
         })
-        val editText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-        editText.setHint(R.string.search)
-        editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
-        editText.setBackgroundResource(R.drawable.search_view_shape)
-        editText.setSingleLine()
-        editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(5))
+        customizingActionBar(searchView)
+    }
+
+    private fun customizingActionBar(searchView: SearchView) {
+        bindAllSearchViewElements(searchView)
+        searchEditText.apply {
+            setHint(R.string.search)
+            textAlignment = View.TEXT_ALIGNMENT_CENTER
+            setSingleLine()
+            filters = arrayOf<InputFilter>(InputFilter.LengthFilter(15))
+        }
+        searchBar.setBackgroundResource(R.drawable.search_view_shape)
+        searchBar.layoutParams = (searchBar.layoutParams as ViewGroup.MarginLayoutParams).apply {
+            topMargin = 15
+            bottomMargin = 15
+            rightMargin = 40
+        }
+    }
+
+    private fun bindAllSearchViewElements(searchView: SearchView){
+        searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text)
+        searchBar = searchView.findViewById(androidx.appcompat.R.id.search_bar)
+        searchCloseButton = searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
