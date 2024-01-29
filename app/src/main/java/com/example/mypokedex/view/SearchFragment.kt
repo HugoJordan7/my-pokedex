@@ -1,18 +1,28 @@
 package com.example.mypokedex.view
 
+import android.content.Context
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.*
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
+import com.example.mypokedex.contract.SearchContract
+import com.example.mypokedex.presenter.SearchPresenter
 
-class SearchFragment: Fragment() {
+class SearchFragment: Fragment(), SearchContract.View {
+
+    override lateinit var presenter: SearchPresenter
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var progressBar: ProgressBar
 
     private lateinit var searchBar: View
     private lateinit var searchEditText: EditText
@@ -29,6 +39,29 @@ class SearchFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun bindAllViews(view: View) {
+        recyclerView = view.findViewById(R.id.rv_search_pokemon)
+        progressBar = view.findViewById(R.id.search_progress)
+    }
+
+    override fun showSearchPokemon(pokemonList: List<PokemonItem>) {
+        
+    }
+
+    override fun context() = requireContext()
+
+    override fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        progressBar.visibility = View.GONE
+    }
+
+    override fun showFailure(message: String) {
+        Toast.makeText(context(),message,Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

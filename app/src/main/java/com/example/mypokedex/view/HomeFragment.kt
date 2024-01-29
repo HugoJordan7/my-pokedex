@@ -1,11 +1,8 @@
 package com.example.mypokedex.view
 
 import android.os.Bundle
-import android.text.InputFilter
 import android.view.*
 import android.widget.*
-import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +12,6 @@ import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.presenter.HomePresenter
 import com.example.mypokedex.util.HomeAdapter
 import com.example.mypokedex.util.HomeScroll
-import com.xwray.groupie.GroupieAdapter
 
 class HomeFragment : Fragment(), HomeContract.View {
 
@@ -57,10 +53,6 @@ class HomeFragment : Fragment(), HomeContract.View {
     override fun showPokemon(pokemonList: List<PokemonItem>) {
         HomeAdapter.adapter.addAll(pokemonList)
         HomeAdapter.adapter.notifyDataSetChanged()
-    }
-
-    override fun showSearchPokemon(pokemonList: List<PokemonItem>) {
-
     }
 
     override fun context() = requireContext()
