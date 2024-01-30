@@ -16,13 +16,10 @@
     </fragment>
 
     <fragment
-        android:label="@string/search"
+        android:label=""
         tools:layout="@layout/fragment_search"
         android:id="@+id/search_fragment"
         android:name="com.example.mypokedex.view.SearchFragment">
-        <action
-            android:id="@+id/action_search_fragment_to_about_fragment"
-            app:destination="@id/about_fragment" />
     </fragment>
 
     <fragment

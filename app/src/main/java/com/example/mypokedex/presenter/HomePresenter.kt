@@ -1,15 +1,12 @@
 package com.example.mypokedex.presenter
 
-import android.content.Context
 import android.view.View
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.data.PokemonRemoteDataSource
 import com.example.mypokedex.model.*
 import com.example.mypokedex.util.HomeScroll
-import com.example.mypokedex.util.ProjectResources
 import com.example.mypokedex.view.HomeFragment
 import com.example.mypokedex.view.PokemonItem
-import com.xwray.groupie.GroupieAdapter
 
 
 class HomePresenter(
@@ -31,10 +28,6 @@ class HomePresenter(
         findAllPokemon(currentId, lastId)
     }
 
-    override fun findAllSearchPokemon() {
-
-    }
-
     override fun onSuccess(response: List<Pokemon>) {
         var list = response.map { PokemonItem(it, view.context()) }
         view.showPokemon(list)
@@ -46,131 +39,6 @@ class HomePresenter(
 
     override fun onComplete() {
         view.hideProgressBar()
-    }
-
-    fun getSearchAdapter(context: Context): GroupieAdapter {
-        return GroupieAdapter().apply {
-            add(PokemonItem(
-                Pokemon(
-                    form = PokemonForm(
-                        id = 1,
-                        name = "bulbasaur",
-                        listTypes = mutableListOf(
-                            PokemonType(
-                                slot = 1,
-                                name = PokemonTypeName("grass","https://pokeapi.co/api/v2/type/12/")
-                            ),
-                            PokemonType(
-                                slot = 2,
-                                name = PokemonTypeName("poison","https://pokeapi.co/api/v2/type/4/")
-                            )
-                        )
-                    ),
-                    specie = PokemonSpecie(
-                        color = PokemonColor(name = "green",url = "https://pokeapi.co/api/v2/pokemon-color/5/")
-                    )
-                ),context))
-            add(PokemonItem(
-                Pokemon(
-                    form = PokemonForm(
-                        id = 1,
-                        name = "bulbasaur",
-                        listTypes = mutableListOf(
-                            PokemonType(
-                                slot = 1,
-                                name = PokemonTypeName("grass","https://pokeapi.co/api/v2/type/12/")
-                            ),
-                            PokemonType(
-                                slot = 2,
-                                name = PokemonTypeName("poison","https://pokeapi.co/api/v2/type/4/")
-                            )
-                        )
-                    ),
-                    specie = PokemonSpecie(
-                        color = PokemonColor(name = "green",url = "https://pokeapi.co/api/v2/pokemon-color/5/")
-                    )
-                ),context))
-            add(PokemonItem(
-                Pokemon(
-                    form = PokemonForm(
-                        id = 1,
-                        name = "bulbasaur",
-                        listTypes = mutableListOf(
-                            PokemonType(
-                                slot = 1,
-                                name = PokemonTypeName("grass","https://pokeapi.co/api/v2/type/12/")
-                            ),
-                            PokemonType(
-                                slot = 2,
-                                name = PokemonTypeName("poison","https://pokeapi.co/api/v2/type/4/")
-                            )
-                        )
-                    ),
-                    specie = PokemonSpecie(
-                        color = PokemonColor(name = "green",url = "https://pokeapi.co/api/v2/pokemon-color/5/")
-                    )
-                ),context))
-            add(PokemonItem(
-                Pokemon(
-                    form = PokemonForm(
-                        id = 1,
-                        name = "bulbasaur",
-                        listTypes = mutableListOf(
-                            PokemonType(
-                                slot = 1,
-                                name = PokemonTypeName("grass","https://pokeapi.co/api/v2/type/12/")
-                            ),
-                            PokemonType(
-                                slot = 2,
-                                name = PokemonTypeName("poison","https://pokeapi.co/api/v2/type/4/")
-                            )
-                        )
-                    ),
-                    specie = PokemonSpecie(
-                        color = PokemonColor(name = "green",url = "https://pokeapi.co/api/v2/pokemon-color/5/")
-                    )
-                ),context))
-            add(PokemonItem(
-                Pokemon(
-                    form = PokemonForm(
-                        id = 1,
-                        name = "bulbasaur",
-                        listTypes = mutableListOf(
-                            PokemonType(
-                                slot = 1,
-                                name = PokemonTypeName("grass","https://pokeapi.co/api/v2/type/12/")
-                            ),
-                            PokemonType(
-                                slot = 2,
-                                name = PokemonTypeName("poison","https://pokeapi.co/api/v2/type/4/")
-                            )
-                        )
-                    ),
-                    specie = PokemonSpecie(
-                        color = PokemonColor(name = "green",url = "https://pokeapi.co/api/v2/pokemon-color/5/")
-                    )
-                ),context))
-            add(PokemonItem(
-                Pokemon(
-                    form = PokemonForm(
-                        id = 1,
-                        name = "bulbasaur",
-                        listTypes = mutableListOf(
-                            PokemonType(
-                                slot = 1,
-                                name = PokemonTypeName("grass","https://pokeapi.co/api/v2/type/12/")
-                            ),
-                            PokemonType(
-                                slot = 2,
-                                name = PokemonTypeName("poison","https://pokeapi.co/api/v2/type/4/")
-                            )
-                        )
-                    ),
-                    specie = PokemonSpecie(
-                        color = PokemonColor(name = "green",url = "https://pokeapi.co/api/v2/pokemon-color/5/")
-                    )
-                ),context))
-        }
     }
 
 }

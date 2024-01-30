@@ -17,6 +17,7 @@ class SearchPresenter(
     }
 
     override fun findAllPokemonByName(query: String) {
+        view.hideRecyclerView()
         view.showProgressBar()
         dataSource.findAllPokemonByName(query,this)
     }
@@ -36,6 +37,7 @@ class SearchPresenter(
 
     override fun onComplete() {
         view.hideProgressBar()
+        view.showRecyclerView()
     }
 
 }

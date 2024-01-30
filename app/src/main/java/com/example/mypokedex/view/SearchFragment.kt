@@ -1,5 +1,6 @@
 package com.example.mypokedex.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.*
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +18,7 @@ import com.example.mypokedex.R
 import com.example.mypokedex.contract.SearchContract
 import com.example.mypokedex.presenter.SearchPresenter
 import com.xwray.groupie.GroupieAdapter
+import okhttp3.internal.notifyAll
 
 class SearchFragment: Fragment(), SearchContract.View {
 
@@ -53,10 +56,7 @@ class SearchFragment: Fragment(), SearchContract.View {
     }
 
     override fun showSearchPokemon(pokemonList: List<PokemonItem>) {
-        adapter.apply {
-            addAll(pokemonList)
-            notifyDataSetChanged()
-        }
+        adapter.apply {clear(); addAll(pokemonList); notifyDataSetChanged()}
     }
 
     override fun context() = requireContext()
@@ -69,6 +69,14 @@ class SearchFragment: Fragment(), SearchContract.View {
         progressBar.visibility = View.GONE
     }
 
+    override fun showRecyclerView() {
+        recyclerView.visibility = View.VISIBLE
+    }
+
+    override fun hideRecyclerView() {
+        recyclerView.visibility = View.GONE
+    }
+
     override fun showFailure(message: String) {
         Toast.makeText(context(),message,Toast.LENGTH_SHORT).show()
     }
@@ -77,16 +85,15 @@ class SearchFragment: Fragment(), SearchContract.View {
         inflater.inflate(R.menu.menu_search, menu)
         val searchItem = menu.findItem(R.id.item_search)
         val searchView = searchItem.actionView as SearchView
+        searchItem.expandActionView()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query == null){
                     Toast.makeText(requireContext(), "The query is empty!", Toast.LENGTH_SHORT).show()
                 }else{
-                    adapter.clear()
-                    adapter.notifyDataSetChanged()
                     presenter.findAllPokemonByName(query)
-                    Toast.makeText(requireContext(), "Searching pokemon!", Toast.LENGTH_SHORT).show()
                 }
+                searchView.clearFocus()
                 return true
             }
 
@@ -109,7 +116,6 @@ class SearchFragment: Fragment(), SearchContract.View {
 
         })
         customizingActionBar(searchView)
-        searchItem.expandActionView()
     }
 
     private fun customizingActionBar(searchView: SearchView) {

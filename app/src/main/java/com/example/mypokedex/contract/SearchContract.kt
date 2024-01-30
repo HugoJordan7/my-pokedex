@@ -16,6 +16,8 @@ interface SearchContract {
         fun context(): Context
         fun showProgressBar()
         fun hideProgressBar()
+        fun showRecyclerView()
+        fun hideRecyclerView()
         fun showFailure(message: String)
     }
 

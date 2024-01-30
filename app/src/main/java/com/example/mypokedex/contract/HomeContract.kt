@@ -25,7 +25,6 @@ interface HomeContract {
         fun onStart(view: android.view.View)
         fun findAllPokemon(firstId: Int, lastId: Int)
         fun loadMorePokemon(currentId: Int)
-        fun findAllSearchPokemon()
         fun onSuccess(response: List<Pokemon>)
         fun onFailure(message: String)
         fun onComplete()
