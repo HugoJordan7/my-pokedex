@@ -56,7 +56,7 @@ class SearchFragment: Fragment(), SearchContract.View {
     }
 
     override fun showSearchPokemon(pokemonList: List<PokemonItem>) {
-        adapter.apply {clear(); addAll(pokemonList); notifyDataSetChanged()}
+        adapter.apply {addAll(pokemonList); notifyDataSetChanged()}
     }
 
     override fun context() = requireContext()
@@ -91,6 +91,7 @@ class SearchFragment: Fragment(), SearchContract.View {
                 if (query == null){
                     Toast.makeText(requireContext(), "The query is empty!", Toast.LENGTH_SHORT).show()
                 }else{
+                    adapter.clear()
                     presenter.findAllPokemonByName(query)
                 }
                 searchView.clearFocus()

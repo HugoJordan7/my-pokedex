@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/details_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/details_header_shape"
+            app:layout_constraintDimensionRatio="4:3"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/details_poke_icon"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/poke3" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/details_about_title"
+            android:text="@string/about"
+            style="@style/titles_poke_details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_header"/>
+
+        <TextView
+            android:id="@+id/details_about"
+            android:textSize="16sp"
+            android:textColor="@color/black_transparent_1"
+            android:lineSpacingExtra="5dp"
+            android:textAlignment="textStart"
+            android:text="Nome: \nId: \nTipo (s):"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="@dimen/details_margin_right"
+            app:layout_constraintTop_toBottomOf="@+id/details_about_title"/>
+
+        
+
+        <TextView
+            android:id="@+id/details_description_title"
+            android:text="@string/description"
+            style="@style/titles_poke_details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_about"/>
+
+        <TextView
+            android:id="@+id/details_description"
+            android:textSize="16sp"
+            android:textColor="@color/black_transparent_1"
+            android:lineSpacingExtra="5dp"
+            android:textAlignment="textStart"
+            android:text="Há uma grande flor nas costas de VENUSAUR. Diz-se que a flor adquire cores vivas se receber bastante nutrição e luz solar. O aroma da flor acalma as emoções das pessoas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="@dimen/details_margin_right"
+            app:layout_constraintTop_toBottomOf="@+id/details_description_title"/>
+
+        <TextView
+            android:id="@+id/details_types_title"
+            android:text="@string/types"
+            style="@style/titles_poke_details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_description"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

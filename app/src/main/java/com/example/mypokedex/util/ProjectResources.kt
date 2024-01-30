@@ -23,38 +23,6 @@ object ProjectResources {
         return list
     }
 
-    fun checkPokemonListResponseError(
-        formCallList: List<Response<PokemonForm>>,
-        specieCallList: List<Response<PokemonSpecie>>
-    ): Boolean{
-        if (formCallList.size != specieCallList.size){
-            return true
-        }
-        for (i in formCallList.indices){
-            if(
-                (!formCallList[i].isSuccessful || formCallList[i].body() == null) ||
-                (!specieCallList[i].isSuccessful || specieCallList[i].body() == null)
-            ){
-                return true
-            }
-        }
-        return false
-    }
-
-    fun getPokemonList(listForm: List<PokemonForm?>, listSpecie: List<PokemonSpecie?>): List<Pokemon>{
-        if(listForm.size != listSpecie.size){
-            return emptyList()
-        }
-        var pokemonList: MutableList<Pokemon> = mutableListOf()
-        for(i in listForm.indices){
-            if(listForm[i] == null || listSpecie[i] == null){
-                return emptyList()
-            }
-            pokemonList.add(Pokemon(listForm[i]!!,listSpecie[i]!!))
-        }
-        return pokemonList
-    }
-
     fun setImageByPokemonType(type: String, imageType: ImageView) {
         when (type.toLowerCase()) {
             "normal" -> imageType.setImageResource(R.drawable.normal_type)

@@ -19,8 +19,3 @@ data class PokemonTypeName(
     @SerializedName("name") var name: String,
     @SerializedName("url") var url: String
 ): Serializable
-
-data class FewPokeDetails(
-    @SerializedName("id") var id: Int,
-    @SerializedName("name") var name: String
-): Serializable

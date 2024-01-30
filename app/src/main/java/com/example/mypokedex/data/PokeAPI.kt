@@ -13,7 +13,4 @@ interface PokeAPI {
 
     @GET("pokemon-species/{id}")
     fun findPokemonSpecie(@Path("id") id: Int): Call<PokemonSpecie>
-
-    @GET("pokemon-form/{id}")
-    fun findFewPokemonDetails(@Path("id") id: Int): Call<FewPokeDetails>
 }
