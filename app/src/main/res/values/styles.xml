@@ -11,11 +11,30 @@
         <item name="android:layout_marginTop">@dimen/details_margin_top</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/black</item>
+    </style>
 
+    <style name="status_text_view">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="status_layout_view">
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginLeft">@dimen/details_items_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/details_margin_top</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/status_text_shape</item>
     </style>
 
     <dimen name="nav_view_elements_margin_bottom">20dp</dimen>
     <dimen name="details_margin_right">40dp</dimen>
     <dimen name="details_margin_left">20dp</dimen>
+    <dimen name="details_items_margin_left">35dp</dimen>
     <dimen name="details_margin_top">20dp</dimen>
 </resources>

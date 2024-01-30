@@ -10,4 +10,12 @@
     <string name="poke_search_error">"Error search data from server"</string>
     <string name="types">Tipos</string>
     <string name="description">Descrição</string>
+    <string name="details_poke_about">Nome: %1$s \nId: %2$s\nTipo (s):</string>
+    <string name="stats">Status</string>
+    <string name="hp">HP: %1$d</string>
+    <string name="attack">Attack: %1$d</string>
+    <string name="defense">Defense: %1$d</string>
+    <string name="special_attack">Sp. Atk: %1$d</string>
+    <string name="special_defense">Sp. Def: %1$d</string>
+    <string name="speed">Speed: %1$d</string>
 </resources>
