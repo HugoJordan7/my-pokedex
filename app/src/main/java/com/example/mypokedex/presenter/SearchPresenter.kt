@@ -9,20 +9,25 @@ import com.example.mypokedex.view.SearchFragment
 
 class SearchPresenter(
     override var view: SearchFragment,
-    override var dataSource: SearchPokemonRemoteDataSource
+    override var dataSource: SearchPokemonRemoteDataSource = SearchPokemonRemoteDataSource()
 ) : SearchContract.Presenter {
 
     override fun onStart(view: View) {
         this.view.bindAllViews(view)
-        this.view.showProgressBar()
     }
 
-    override fun findAllSearchPokemon() {
-        TODO("Not yet implemented")
+    override fun findAllPokemonByName(query: String) {
+        view.showProgressBar()
+        dataSource.findAllPokemonByName(query,this)
     }
 
     override fun onSuccess(response: List<Pokemon>) {
-        view.showSearchPokemon(response.map { PokemonItem(it,view.context()) })
+        if (response.isEmpty()){
+            onFailure("No pokemon found!")
+        } else {
+            val list = response.map { PokemonItem(it, view.context()) }
+            view.showSearchPokemon(list)
+        }
     }
 
     override fun onFailure(message: String) {

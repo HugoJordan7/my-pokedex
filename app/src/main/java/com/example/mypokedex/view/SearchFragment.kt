@@ -1,6 +1,5 @@
 package com.example.mypokedex.view
 
-import android.content.Context
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.*
@@ -8,14 +7,15 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.SearchContract
 import com.example.mypokedex.presenter.SearchPresenter
+import com.xwray.groupie.GroupieAdapter
 
 class SearchFragment: Fragment(), SearchContract.View {
 
@@ -23,6 +23,7 @@ class SearchFragment: Fragment(), SearchContract.View {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
+    private var adapter = GroupieAdapter()
 
     private lateinit var searchBar: View
     private lateinit var searchEditText: EditText
@@ -31,6 +32,8 @@ class SearchFragment: Fragment(), SearchContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        presenter = SearchPresenter(this)
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,6 +42,9 @@ class SearchFragment: Fragment(), SearchContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.onStart(view)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
     }
 
     override fun bindAllViews(view: View) {
@@ -47,7 +53,10 @@ class SearchFragment: Fragment(), SearchContract.View {
     }
 
     override fun showSearchPokemon(pokemonList: List<PokemonItem>) {
-        
+        adapter.apply {
+            addAll(pokemonList)
+            notifyDataSetChanged()
+        }
     }
 
     override fun context() = requireContext()
@@ -70,7 +79,14 @@ class SearchFragment: Fragment(), SearchContract.View {
         val searchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Toast.makeText(requireContext(), "search pokemon", Toast.LENGTH_SHORT).show()
+                if (query == null){
+                    Toast.makeText(requireContext(), "The query is empty!", Toast.LENGTH_SHORT).show()
+                }else{
+                    adapter.clear()
+                    adapter.notifyDataSetChanged()
+                    presenter.findAllPokemonByName(query)
+                    Toast.makeText(requireContext(), "Searching pokemon!", Toast.LENGTH_SHORT).show()
+                }
                 return true
             }
 
@@ -101,7 +117,6 @@ class SearchFragment: Fragment(), SearchContract.View {
         searchEditText.apply {
             setHint(R.string.search)
             textAlignment = View.TEXT_ALIGNMENT_CENTER
-            setSingleLine()
             filters = arrayOf<InputFilter>(InputFilter.LengthFilter(15))
         }
         searchBar.setBackgroundResource(R.drawable.search_view_shape)

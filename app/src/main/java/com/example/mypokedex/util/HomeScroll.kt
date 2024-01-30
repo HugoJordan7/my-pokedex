@@ -6,7 +6,7 @@ import com.example.mypokedex.contract.HomeContract
 
 object HomeScroll {
 
-    const val RANGE = 10
+    const val RANGE = 100
 
     fun getScroll(presenter: HomeContract.Presenter) = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
