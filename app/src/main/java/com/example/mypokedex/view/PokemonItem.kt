@@ -1,6 +1,7 @@
 package com.example.mypokedex.view
 
 import android.graphics.drawable.GradientDrawable
+import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -57,10 +58,12 @@ class PokemonItem(
         viewHolder.itemView.findViewById<ConstraintLayout>(R.id.pokemon_item).background = gradient
 
         viewHolder.itemView.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putSerializable(DetailsFragment.POKEMON_KEY,pokemon)
             if (homeFragment != null){
-                homeFragment!!.findNavController().navigate(R.id.action_home_fragment_to_details_fragment)
+                homeFragment!!.findNavController().navigate(R.id.action_home_fragment_to_details_fragment,bundle)
             } else{
-                searchFragment!!.findNavController().navigate(R.id.action_search_fragment_to_details_fragment)
+                searchFragment!!.findNavController().navigate(R.id.action_search_fragment_to_details_fragment,bundle)
             }
         }
 

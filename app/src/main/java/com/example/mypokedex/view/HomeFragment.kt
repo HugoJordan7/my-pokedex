@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.presenter.HomePresenter
-import com.example.mypokedex.util.HomeAdapter
-import com.example.mypokedex.util.HomeScroll
+import com.example.mypokedex.util.HomeUtils
 
 class HomeFragment : Fragment(), HomeContract.View {
 
@@ -38,11 +37,11 @@ class HomeFragment : Fragment(), HomeContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.onStart(view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = HomeAdapter.adapter
-        if (HomeAdapter.adapter.itemCount == 0) {
-            presenter.findAllPokemon(1, HomeScroll.RANGE)
+        recyclerView.adapter = HomeUtils.adapter
+        if (HomeUtils.adapter.itemCount == 0) {
+            presenter.findAllPokemon(1, HomeUtils.RANGE)
         }
-        recyclerView.addOnScrollListener(HomeScroll.getScroll(presenter))
+        recyclerView.addOnScrollListener(HomeUtils.getScroll(presenter))
     }
 
     override fun bindAllViews(view: View) {
@@ -51,8 +50,8 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun showPokemon(pokemonList: List<PokemonItem>) {
-        HomeAdapter.adapter.addAll(pokemonList)
-        HomeAdapter.adapter.notifyDataSetChanged()
+        HomeUtils.adapter.addAll(pokemonList)
+        HomeUtils.adapter.notifyDataSetChanged()
     }
 
     override fun context() = requireContext()

@@ -4,7 +4,7 @@ import android.view.View
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.data.PokemonRemoteDataSource
 import com.example.mypokedex.model.*
-import com.example.mypokedex.util.HomeScroll
+import com.example.mypokedex.util.HomeUtils
 import com.example.mypokedex.view.HomeFragment
 import com.example.mypokedex.view.PokemonItem
 
@@ -24,7 +24,7 @@ class HomePresenter(
     }
 
     override fun loadMorePokemon(currentId: Int) {
-        var lastId = currentId + HomeScroll.RANGE-1
+        var lastId = currentId + HomeUtils.RANGE-1
         findAllPokemon(currentId, lastId)
     }
 

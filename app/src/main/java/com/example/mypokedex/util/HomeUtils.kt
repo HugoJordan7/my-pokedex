@@ -3,8 +3,11 @@ package com.example.mypokedex.util
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.contract.HomeContract
+import com.xwray.groupie.GroupieAdapter
 
-object HomeScroll {
+object HomeUtils {
+
+    val adapter = GroupieAdapter()
 
     const val RANGE = 50
 

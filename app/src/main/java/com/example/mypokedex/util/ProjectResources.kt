@@ -19,11 +19,8 @@ import retrofit2.Response
 
 object ProjectResources {
 
-    fun getListOfRangeId(firstId: Int, lastId: Int): List<Int>{
-        var list: MutableList<Int> = mutableListOf()
-        list.addAll(firstId .. lastId)
-        return list
-    }
+    fun getListOfRangeId(firstId: Int, lastId: Int) =
+        mutableListOf<Int>().addAll(firstId .. lastId)
 
     @DrawableRes
     fun getImageByPokemonType(type: String): Int {
