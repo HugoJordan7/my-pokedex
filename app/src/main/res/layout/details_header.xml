@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/details_header"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:background="@drawable/details_header_shape">
+    <ImageView
+        android:id="@+id/details_poke_icon"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/poke3" />
+</LinearLayout>

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home_fragment_to_search_fragment"
             app:destination="@id/search_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_details_fragment"
+            app:destination="@id/details_fragment" />
     </fragment>
 
     <fragment
@@ -20,13 +23,16 @@
         tools:layout="@layout/fragment_search"
         android:id="@+id/search_fragment"
         android:name="com.example.mypokedex.view.SearchFragment">
+        <action
+            android:id="@+id/action_search_fragment_to_details_fragment"
+            app:destination="@id/details_fragment" />
     </fragment>
 
     <fragment
         android:label=""
         tools:layout="@layout/fragment_details"
         android:id="@+id/details_fragment"
-        android:name="com.example.mypokedex.view.SearchFragment">
+        android:name="com.example.mypokedex.view.DetailsFragment">
     </fragment>
 
     <fragment

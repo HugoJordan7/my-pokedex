@@ -2,8 +2,10 @@ package com.example.mypokedex.util
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,27 +25,28 @@ object ProjectResources {
         return list
     }
 
-    fun setImageByPokemonType(type: String, imageType: ImageView) {
-        when (type.toLowerCase()) {
-            "normal" -> imageType.setImageResource(R.drawable.normal_type)
-            "fighting" -> imageType.setImageResource(R.drawable.fight_type)
-            "flying" -> imageType.setImageResource(R.drawable.flying_type)
-            "poison" -> imageType.setImageResource(R.drawable.poison_type)
-            "ground" -> imageType.setImageResource(R.drawable.ground_type)
-            "rock" -> imageType.setImageResource(R.drawable.rock_type)
-            "bug" -> imageType.setImageResource(R.drawable.bug_type)
-            "ghost" -> imageType.setImageResource(R.drawable.ghost_type)
-            "steel" -> imageType.setImageResource(R.drawable.steel_type)
-            "fire" -> imageType.setImageResource(R.drawable.fire_type)
-            "water" -> imageType.setImageResource(R.drawable.water_type)
-            "grass" -> imageType.setImageResource(R.drawable.grass_type)
-            "electric" -> imageType.setImageResource(R.drawable.electric_type)
-            "psychic" -> imageType.setImageResource(R.drawable.psychic_type)
-            "ice" -> imageType.setImageResource(R.drawable.ice_type)
-            "dragon" -> imageType.setImageResource(R.drawable.dragon_type)
-            "dark" -> imageType.setImageResource(R.drawable.dark_type)
-            "fairy" -> imageType.setImageResource(R.drawable.fairy_type)
-            else -> imageType.setImageResource(R.drawable.normal_type)
+    @DrawableRes
+    fun getImageByPokemonType(type: String): Int {
+        return when (type.toLowerCase()) {
+            "normal" -> R.drawable.normal_type
+            "fighting" -> R.drawable.fight_type
+            "flying" -> R.drawable.flying_type
+            "poison" -> R.drawable.poison_type
+            "ground" -> R.drawable.ground_type
+            "rock" -> R.drawable.rock_type
+            "bug" -> R.drawable.bug_type
+            "ghost" -> R.drawable.ghost_type
+            "steel" -> R.drawable.steel_type
+            "fire" -> R.drawable.fire_type
+            "water" -> R.drawable.water_type
+            "grass" -> R.drawable.grass_type
+            "electric" -> R.drawable.electric_type
+            "psychic" -> R.drawable.psychic_type
+            "ice" -> R.drawable.ice_type
+            "dragon" -> R.drawable.dragon_type
+            "dark" -> R.drawable.dark_type
+            "fairy" -> R.drawable.fairy_type
+            else -> R.drawable.normal_type
         }
     }
 

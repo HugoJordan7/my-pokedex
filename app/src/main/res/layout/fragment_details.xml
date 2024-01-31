@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/details_header"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:background="@drawable/details_header_shape">
-            <ImageView
-                android:id="@+id/details_poke_icon"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/poke3" />
-        </LinearLayout>
-
+        <include layout="@layout/details_header"/>
         <include layout="@layout/details_about"/>
+        <include layout="@layout/details_types"/>
         <include layout="@layout/details_description"/>
         <include layout="@layout/details_status"/>
-
 
     </LinearLayout>
 </ScrollView>

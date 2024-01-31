@@ -29,7 +29,7 @@ class HomePresenter(
     }
 
     override fun onSuccess(response: List<Pokemon>) {
-        var list = response.map { PokemonItem(it, view.context()) }
+        var list = response.map { PokemonItem(it, view) }
         view.showPokemon(list)
     }
 

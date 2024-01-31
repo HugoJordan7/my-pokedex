@@ -26,7 +26,7 @@ class SearchPresenter(
         if (response.isEmpty()){
             onFailure("No pokemon found!")
         } else {
-            val list = response.map { PokemonItem(it, view.context()) }
+            val list = response.map { PokemonItem(it,view) }
             view.showSearchPokemon(list)
         }
     }
