@@ -35,7 +35,7 @@
     <style name="about_text_element">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginLeft">@dimen/details_items_margin_left</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:textColor">@color/black_transparent_1</item>
         <item name="android:textSize">16sp</item>
@@ -44,6 +44,9 @@
     <dimen name="nav_view_elements_margin_bottom">20dp</dimen>
     <dimen name="details_margin_right">40dp</dimen>
     <dimen name="details_margin_left">20dp</dimen>
-    <dimen name="details_items_margin_left">35dp</dimen>
+    <dimen name="details_items_margin_left">40dp</dimen>
     <dimen name="details_margin_top">20dp</dimen>
+
+    <dimen name="type_image_height">30dp</dimen>
+    <dimen name="type_image_width">120dp</dimen>
 </resources>

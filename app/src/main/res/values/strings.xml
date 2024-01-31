@@ -24,4 +24,5 @@
     <string name="special_attack">Sp. Atk: %1$d</string>
     <string name="special_defense">Sp. Def: %1$d</string>
     <string name="speed">Speed: %1$d</string>
+    <string name="weaknesses">Fraquezas</string>
 </resources>
