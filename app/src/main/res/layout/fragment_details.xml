@@ -16,7 +16,7 @@
         <LinearLayout
             android:id="@+id/details_header"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="270dp"
             android:background="@drawable/details_header_shape">
             <ImageView
                 android:id="@+id/details_poke_icon"
@@ -26,77 +26,9 @@
                 android:src="@drawable/poke3" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/details_about_title"
-            android:text="@string/about"
-            style="@style/titles_poke_details"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_header"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="90dp">
-
-            <TextView
-                android:id="@+id/details_about"
-                android:textSize="16sp"
-                android:textColor="@color/black_transparent_1"
-                android:lineSpacingExtra="8dp"
-                android:textAlignment="textStart"
-                tools:text="Nome: %1$s \nId: %2$s\nTipo (s):"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="@dimen/details_margin_right"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <ImageView
-                android:id="@+id/details_primary_type"
-                android:layout_width="90dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="110dp"
-                android:layout_marginBottom="3dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:src="@drawable/grass_type" />
-
-            <ImageView
-                android:id="@+id/details_second_type"
-                android:layout_width="90dp"
-                android:layout_height="25dp"
-                app:layout_constraintBottom_toBottomOf="@id/details_primary_type"
-                app:layout_constraintStart_toEndOf="@id/details_primary_type"
-                android:layout_marginStart="20dp"
-                tools:src="@drawable/poison_type" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-        <TextView
-            android:id="@+id/details_description_title"
-            android:text="@string/description"
-            style="@style/titles_poke_details"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_about"/>
-
-        <TextView
-            android:id="@+id/details_description"
-            android:textSize="16sp"
-            android:textColor="@color/black_transparent_1"
-            android:lineSpacingExtra="5dp"
-            android:textAlignment="textStart"
-            android:text="Há uma grande flor nas costas de VENUSAUR. Diz-se que a flor adquire cores vivas se receber bastante nutrição e luz solar. O aroma da flor acalma as emoções das pessoas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="@dimen/details_margin_right"
-            app:layout_constraintTop_toBottomOf="@+id/details_description_title"/>
-
-        <include layout="@layout/pokemon_status"/>
+        <include layout="@layout/details_about"/>
+        <include layout="@layout/details_description"/>
+        <include layout="@layout/details_status"/>
 
 
     </LinearLayout>
