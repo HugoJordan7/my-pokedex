@@ -25,4 +25,5 @@
     <string name="special_defense">Sp. Def: %1$d</string>
     <string name="speed">Speed: %1$d</string>
     <string name="weaknesses">Fraquezas</string>
+    <string name="evolutions">Evoluções</string>
 </resources>

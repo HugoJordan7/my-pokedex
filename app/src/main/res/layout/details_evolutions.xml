@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:visibility="gone"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:visibility="visible"
+    android:layout_marginBottom="30dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/details_evolutions_title"
+        android:text="@string/evolutions"
+        style="@style/titles_poke_details"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <!-- Evolution one -->
+        <LinearLayout style="@style/layout_item_evolution"
+            android:id="@+id/evolution_1">
+            <LinearLayout style="@style/bg_image_evolution"
+                android:id="@+id/layout_img_evolution_1">
+                <ImageView
+                    style="@style/image_evolution"
+                    android:src="@drawable/poke3"
+                    android:id="@+id/img_evolution_1"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/name_evolution_1"
+                style="@style/text_view_evolution"
+                android:text="Venusaur" />
+            <TextView
+                android:id="@+id/id_evolution_1"
+                style="@style/text_view_evolution"
+                android:text="ID: 3" />
+        </LinearLayout>
+
+        <ImageView style="@style/arrow_evolution"
+            android:id="@+id/evolution_arrow_1" />
+
+        <!-- Evolution two -->
+        <LinearLayout style="@style/layout_item_evolution"
+            android:id="@+id/evolution_2">
+            <LinearLayout style="@style/bg_image_evolution"
+                android:id="@+id/layout_img_evolution_2">
+                <ImageView
+                    style="@style/image_evolution"
+                    android:src="@drawable/poke3"
+                    android:id="@+id/img_evolution_2"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/name_evolution_2"
+                style="@style/text_view_evolution"
+                android:text="Venusaur" />
+            <TextView
+                android:id="@+id/id_evolution_2"
+                style="@style/text_view_evolution"
+                android:text="ID: 3" />
+        </LinearLayout>
+
+        <ImageView style="@style/arrow_evolution"
+            android:id="@+id/evolution_arrow_2" />
+
+        <!-- Evolution three -->
+        <LinearLayout style="@style/layout_item_evolution"
+            android:id="@+id/evolution_3">
+            <LinearLayout style="@style/bg_image_evolution"
+                android:id="@+id/layout_img_evolution_3">
+                <ImageView
+                    style="@style/image_evolution"
+                    android:src="@drawable/poke3"
+                    android:id="@+id/img_evolution_3"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/name_evolution_3"
+                style="@style/text_view_evolution"
+                android:text="Venusaur" />
+            <TextView
+                android:id="@+id/id_evolution_3"
+                style="@style/text_view_evolution"
+                android:text="ID: 3" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
