@@ -7,7 +7,6 @@
     android:orientation="vertical"
     app:layout_constraintTop_toBottomOf="@id/details_about">
 
-
     <TextView
         android:id="@+id/details_types_title"
         style="@style/titles_poke_details"
@@ -33,8 +32,5 @@
         app:layout_constraintBottom_toBottomOf="@id/details_primary_type"
         app:layout_constraintStart_toEndOf="@id/details_primary_type"
         android:src="@drawable/poison_type" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

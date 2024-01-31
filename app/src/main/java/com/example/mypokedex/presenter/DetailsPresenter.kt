@@ -11,7 +11,8 @@ class DetailsPresenter(
 ) : DetailsContract.Presenter {
 
     override fun onStart(view: View) {
-
+        this.view.findAllViews(view)
+        this.view.showProgressBar()
     }
 
     override fun findPokemonDetails() {
@@ -19,15 +20,15 @@ class DetailsPresenter(
     }
 
     override fun onSuccess() {
-
+        view.showPokemonDetails()
     }
 
-    override fun onFailure() {
-
+    override fun onFailure(message: String) {
+        view.showFailure(message)
     }
 
     override fun onComplete() {
-
+        view.hideProgressBar()
     }
 
 }

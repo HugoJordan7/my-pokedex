@@ -23,7 +23,7 @@ interface DetailsContract {
         fun onStart(view: android.view.View)
         fun findPokemonDetails()
         fun onSuccess()
-        fun onFailure()
         fun onComplete()
+        fun onFailure(message: String)
     }
 }
