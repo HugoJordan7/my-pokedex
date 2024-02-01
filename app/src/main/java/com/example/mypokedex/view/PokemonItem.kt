@@ -31,15 +31,15 @@ class PokemonItem(
 
     override fun bind(viewHolder: PokemonViewHolder, position: Int) {
         val context = if(homeFragment != null) homeFragment!!.context() else searchFragment!!.context()
-        pokemon.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.form.id}.png"
+        pokemon.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png"
         val pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
         Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
-        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.form.name.capitalize()
-        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = context.getString(R.string.pokemon_id, pokemon.form.id)
+        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.name.capitalize()
+        viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = context.getString(R.string.pokemon_id, pokemon.id)
         val primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)
         val secondType = viewHolder.itemView.findViewById<ImageView>(R.id.second_type)
 
-        val typeNameList = pokemon.form.listTypes
+        val typeNameList = pokemon.types
         val primaryImage = ProjectResources.getImageByPokemonType(typeNameList[0].name.name)
         primaryType.setImageResource(primaryImage)
         if (typeNameList.size == 2) {
@@ -52,13 +52,13 @@ class PokemonItem(
 
         val gradient = GradientDrawable(
             GradientDrawable.Orientation.LEFT_RIGHT,
-            ProjectResources.getIntArrayColors(pokemon.specie.color.name, context)
+            pokemon.specie?.color?.let { ProjectResources.getIntArrayColors(it.name, context) }
         )
         gradient.cornerRadius = 90f
         viewHolder.itemView.findViewById<ConstraintLayout>(R.id.pokemon_item).background = gradient
 
         viewHolder.itemView.setOnClickListener {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putSerializable(DetailsFragment.POKEMON_KEY,pokemon)
             if (homeFragment != null){
                 homeFragment!!.findNavController().navigate(R.id.action_home_fragment_to_details_fragment,bundle)
