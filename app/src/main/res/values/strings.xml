@@ -18,12 +18,14 @@
     <string name="about_habitat">Habitat: %1$s</string>
 
     <string name="stats">Status</string>
+
     <string name="hp">HP: %1$d</string>
     <string name="attack">Attack: %1$d</string>
     <string name="defense">Defense: %1$d</string>
     <string name="special_attack">Sp. Atk: %1$d</string>
     <string name="special_defense">Sp. Def: %1$d</string>
     <string name="speed">Speed: %1$d</string>
+
     <string name="weaknesses">Fraquezas</string>
     <string name="evolutions">Evoluções</string>
     <string name="unknown">Desconhecido</string>

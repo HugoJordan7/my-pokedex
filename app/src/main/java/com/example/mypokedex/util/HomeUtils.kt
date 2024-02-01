@@ -11,13 +11,13 @@ object HomeUtils {
 
     val adapter = GroupieAdapter()
 
-    const val RANGE = 5
+    const val RANGE = 20
 
     fun getScroll(presenter: HomeContract.Presenter, progressBar: ProgressBar) = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-            val lastItem = layoutManager.findLastCompletelyVisibleItemPosition()
+            val lastItem = layoutManager.findLastVisibleItemPosition()
             val totalItemCount = layoutManager.itemCount
             if (lastItem == totalItemCount - 1  && totalItemCount < 1000 && !progressBar.isVisible) {
                 presenter.loadMorePokemon(lastItem+2)

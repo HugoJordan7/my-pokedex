@@ -1,24 +1,22 @@
 package com.example.mypokedex.view
 
-import android.content.Context
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.DetailsContract
 import com.example.mypokedex.model.Pokemon
-import com.example.mypokedex.model.PokemonSpecie
 import com.example.mypokedex.presenter.DetailsPresenter
 import com.example.mypokedex.util.ProjectResources
 import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupieAdapter
 
 class DetailsFragment : Fragment(), DetailsContract.View {
 
@@ -40,12 +38,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     private lateinit var primaryType: ImageView
     private lateinit var secondType: ImageView
     private lateinit var pokemonDescription: TextView
-    private lateinit var hpStatus: TextView
-    private lateinit var attackStatus: TextView
-    private lateinit var defenseStatus: TextView
-    private lateinit var specialAttackStatus: TextView
-    private lateinit var specialDefenseStatus: TextView
-    private lateinit var speedStatus: TextView
+    private lateinit var rvStatus: RecyclerView
     private lateinit var rvWeaknesses: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,8 +99,13 @@ class DetailsFragment : Fragment(), DetailsContract.View {
             pokemon.specie?.descriptionList?.get(6)?.text ?: getString(R.string.unknown)
     }
 
-    fun bindStats(){
-        
+    fun bindStats() {
+        val adapterStatus = GroupieAdapter().apply {
+            addAll(StatusItem.getStatusItemList(context(),pokemon))
+            notifyDataSetChanged()
+        }
+        rvStatus.layoutManager = GridLayoutManager(context(),2)
+        rvStatus.adapter = adapterStatus
     }
 
     override fun showProgressBar() {
@@ -136,12 +134,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         primaryType = view.findViewById(R.id.details_primary_type)
         secondType = view.findViewById(R.id.details_second_type)
         pokemonDescription = view.findViewById(R.id.details_description_text)
-        hpStatus = view.findViewById(R.id.hp_status)
-        attackStatus = view.findViewById(R.id.attack_status)
-        defenseStatus = view.findViewById(R.id.defense_status)
-        specialAttackStatus = view.findViewById(R.id.special_attack_status)
-        specialDefenseStatus = view.findViewById(R.id.special_defense_status)
-        speedStatus = view.findViewById(R.id.speed_status)
+        rvStatus = view.findViewById(R.id.rv_status)
         rvWeaknesses = view.findViewById(R.id.rv_weaknesses)
     }
 
