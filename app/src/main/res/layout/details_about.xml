@@ -16,35 +16,35 @@
 
     <TextView
         android:id="@+id/about_name"
-        android:text="@string/about_name"
+        tools:text="@string/about_name"
         style="@style/about_text_element"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/details_about_title"/>
 
     <TextView
         android:id="@+id/about_id"
-        android:text="@string/about_id"
+        tools:text="@string/about_id"
         style="@style/about_text_element"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about_name"/>
 
     <TextView
         android:id="@+id/about_height"
-        android:text="@string/about_height"
+        tools:text="@string/about_height"
         style="@style/about_text_element"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about_id"/>
 
     <TextView
         android:id="@+id/about_weight"
-        android:text="@string/about_weight"
+        tools:text="@string/about_weight"
         style="@style/about_text_element"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about_height"/>
 
     <TextView
         android:id="@+id/about_habitat"
-        android:text="@string/about_habitat"
+        tools:text="@string/about_habitat"
         style="@style/about_text_element"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about_weight"/>

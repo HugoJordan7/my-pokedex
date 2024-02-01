@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/details_header"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
+    android:layout_height="260dp"
     android:background="@drawable/details_header_shape"
     app:layout_constraintTop_toTopOf="parent">
     <ImageView
         android:id="@+id/details_poke_icon"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:src="@drawable/poke3" />
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,15 +20,15 @@ import com.example.mypokedex.presenter.DetailsPresenter
 import com.example.mypokedex.util.ProjectResources
 import com.squareup.picasso.Picasso
 
-class DetailsFragment: Fragment(), DetailsContract.View {
+class DetailsFragment : Fragment(), DetailsContract.View {
 
     override lateinit var presenter: DetailsPresenter
 
-    companion object{
+    companion object {
         const val POKEMON_KEY = "pokemon"
-        const val SPECIE_KEY = "specie"
     }
 
+    private lateinit var pokemon: Pokemon
     private lateinit var progressBar: ProgressBar
     private lateinit var layoutHeader: LinearLayout
     private lateinit var pokemonIcon: ImageView
@@ -51,33 +52,62 @@ class DetailsFragment: Fragment(), DetailsContract.View {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(false)
         presenter = DetailsPresenter(this)
+        pokemon = arguments?.getSerializable(POKEMON_KEY) as Pokemon
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_details,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.onStart(view)
-        val pokemon = (arguments?.getSerializable(POKEMON_KEY)
-            ?: throw Exception("Error search pokemon details")) as Pokemon
+    }
+
+    fun bindHeader() {
         val pokeIconUrl = ProjectResources.getPokeImgUrlById(pokemon.id)
         Picasso.get().load(pokeIconUrl).into(pokemonIcon)
+        val colorName: String = pokemon.specie?.color?.name ?: "black"
+        val arrayColors = ProjectResources.getIntArrayColors(colorName, context())
+        val gradient = ContextCompat.getDrawable(
+            context(),
+            R.drawable.details_header_shape
+        ) as GradientDrawable
+        gradient.colors = arrayColors
+        layoutHeader.background = gradient
+    }
+
+    fun bindAbout() {
         pokemonName.text = getString(R.string.about_name, pokemon.name.capitalize())
         pokemonId.text = getString(R.string.about_id, pokemon.id)
+        pokemonHeight.text = getString(R.string.about_height, (pokemon.height / 10.0))
+        pokemonWeight.text = getString(R.string.about_weight, (pokemon.weight / 10))
+        pokemonHabitat.text = getString(
+            R.string.about_habitat,
+            (pokemon.specie?.habitat?.name?.capitalize() ?: getString(R.string.unknown))
+        )
+    }
 
+    fun bindTypes() {
         val type1 = ProjectResources.getImageByPokemonType(pokemon.types[0].name.name)
         primaryType.setImageResource(type1)
         if (pokemon.types.size > 1) {
             val type2 = ProjectResources.getImageByPokemonType(pokemon.types[1].name.name)
             secondType.setImageResource(type2)
         }
-        val colorName: String = pokemon.specie?.color?.name ?: "black"
-        val arrayColors = ProjectResources.getIntArrayColors(colorName, context())
-        val gradient = ContextCompat.getDrawable(context(),R.drawable.details_header_shape) as GradientDrawable
-        gradient.colors = arrayColors
-        layoutHeader.background = gradient
+    }
+
+    fun bindDescription() {
+        pokemonDescription.text =
+            pokemon.specie?.descriptionList?.get(6)?.text ?: getString(R.string.unknown)
+    }
+
+    fun bindStats(){
+        
     }
 
     override fun showProgressBar() {
@@ -88,12 +118,8 @@ class DetailsFragment: Fragment(), DetailsContract.View {
         progressBar.visibility = View.GONE
     }
 
-    override fun showPokemonDetails() {
-
-    }
-
     override fun showFailure(message: String) {
-        Toast.makeText(context(),message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(context(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun context() = requireContext()

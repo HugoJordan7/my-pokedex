@@ -13,8 +13,6 @@ class SearchPokemonRemoteDataSource {
                 val filteredNamesList = withContext(Dispatchers.IO) {
                     retrofit.findPokemonNamesList().execute().body()!!
                 }.results.filter { it.name.contains(query) }
-                Log.i("query","${filteredNamesList.size}")
-                for (res in filteredNamesList) Log.i("query",res.name)
 
                 val pokemonList = filteredNamesList.map { async(Dispatchers.IO){
                     val pokemon = retrofit.findPokemonByName(it.name).execute().body()!!

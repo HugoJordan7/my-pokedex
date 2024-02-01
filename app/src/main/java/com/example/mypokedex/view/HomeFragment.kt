@@ -41,7 +41,7 @@ class HomeFragment : Fragment(), HomeContract.View {
         if (HomeUtils.adapter.itemCount == 0) {
             presenter.findAllPokemon(1, HomeUtils.RANGE)
         }
-        recyclerView.addOnScrollListener(HomeUtils.getScroll(presenter))
+        recyclerView.addOnScrollListener(HomeUtils.getScroll(presenter,progressBar))
     }
 
     override fun bindAllViews(view: View) {

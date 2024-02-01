@@ -26,4 +26,5 @@
     <string name="speed">Speed: %1$d</string>
     <string name="weaknesses">Fraquezas</string>
     <string name="evolutions">Evoluções</string>
+    <string name="unknown">Desconhecido</string>
 </resources>
