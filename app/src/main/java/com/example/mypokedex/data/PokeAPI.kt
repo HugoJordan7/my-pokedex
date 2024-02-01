@@ -11,6 +11,15 @@ interface PokeAPI {
     @GET("pokemon-form/{id}")
     fun findPokemonById(@Path("id") id: Int): Call<Pokemon>
 
+    @GET("pokemon/{name}")
+    fun findPokemonByName(@Path("name") name: String): Call<Pokemon>
+
     @GET("pokemon-species/{id}")
     fun findPokemonSpecieById(@Path("id") id: Int): Call<PokemonSpecie>
+
+    @GET("pokemon")
+    fun findPokemonNamesList(
+        @Query("offset") offset: Int = 0,
+        @Query("limit") limit: Int = 1000
+    ): Call<PokemonNamesList>
 }

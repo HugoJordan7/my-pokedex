@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.DetailsContract
 import com.example.mypokedex.model.Pokemon
+import com.example.mypokedex.model.PokemonSpecie
 import com.example.mypokedex.presenter.DetailsPresenter
 import com.example.mypokedex.util.ProjectResources
 import com.squareup.picasso.Picasso
@@ -22,7 +23,10 @@ class DetailsFragment: Fragment(), DetailsContract.View {
 
     override lateinit var presenter: DetailsPresenter
 
-    companion object{ const val POKEMON_KEY = "pokemon" }
+    companion object{
+        const val POKEMON_KEY = "pokemon"
+        const val SPECIE_KEY = "specie"
+    }
 
     private lateinit var progressBar: ProgressBar
     private lateinit var layoutHeader: LinearLayout
@@ -55,11 +59,11 @@ class DetailsFragment: Fragment(), DetailsContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.onStart(view)
         val pokemon = (arguments?.getSerializable(POKEMON_KEY)
             ?: throw Exception("Error search pokemon details")) as Pokemon
-        presenter.onStart(view)
-
-        Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
+        val pokeIconUrl = ProjectResources.getPokeImgUrlById(pokemon.id)
+        Picasso.get().load(pokeIconUrl).into(pokemonIcon)
         pokemonName.text = getString(R.string.about_name, pokemon.name.capitalize())
         pokemonId.text = getString(R.string.about_id, pokemon.id)
 
@@ -69,7 +73,8 @@ class DetailsFragment: Fragment(), DetailsContract.View {
             val type2 = ProjectResources.getImageByPokemonType(pokemon.types[1].name.name)
             secondType.setImageResource(type2)
         }
-        val arrayColors = pokemon.specie?.color?.let { ProjectResources.getIntArrayColors(it.name, context()) }
+        val colorName: String = pokemon.specie?.color?.name ?: "black"
+        val arrayColors = ProjectResources.getIntArrayColors(colorName, context())
         val gradient = ContextCompat.getDrawable(context(),R.drawable.details_header_shape) as GradientDrawable
         gradient.colors = arrayColors
         layoutHeader.background = gradient

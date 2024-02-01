@@ -9,7 +9,7 @@ object HomeUtils {
 
     val adapter = GroupieAdapter()
 
-    const val RANGE = 50
+    const val RANGE = 10
 
     fun getScroll(presenter: HomeContract.Presenter) = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

@@ -31,9 +31,9 @@ class PokemonItem(
 
     override fun bind(viewHolder: PokemonViewHolder, position: Int) {
         val context = if(homeFragment != null) homeFragment!!.context() else searchFragment!!.context()
-        pokemon.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png"
         val pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
-        Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
+        val pokeIconUrl = ProjectResources.getPokeImgUrlById(pokemon.id)
+        Picasso.get().load(pokeIconUrl).into(pokemonIcon)
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.name.capitalize()
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = context.getString(R.string.pokemon_id, pokemon.id)
         val primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)
@@ -50,9 +50,10 @@ class PokemonItem(
             secondType.visibility = View.GONE
         }
 
+        val colorName: String = pokemon.specie?.color?.name ?: "black"
         val gradient = GradientDrawable(
             GradientDrawable.Orientation.LEFT_RIGHT,
-            pokemon.specie?.color?.let { ProjectResources.getIntArrayColors(it.name, context) }
+            ProjectResources.getIntArrayColors(colorName, context)
         )
         gradient.cornerRadius = 90f
         viewHolder.itemView.findViewById<ConstraintLayout>(R.id.pokemon_item).background = gradient

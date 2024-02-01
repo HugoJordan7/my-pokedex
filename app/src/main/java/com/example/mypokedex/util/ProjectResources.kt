@@ -18,6 +18,8 @@ import retrofit2.Response
 
 object ProjectResources {
 
+    fun getPokeImgUrlById(id: Int): String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$id.png"
+
     fun getListOfRangeId(firstId: Int, lastId: Int): List<Int>{
         var list: MutableList<Int> = mutableListOf()
         list.addAll(firstId .. lastId)

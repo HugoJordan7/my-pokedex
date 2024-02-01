@@ -14,13 +14,13 @@ class PokemonRemoteDataSource {
         val listId = ProjectResources.getListOfRangeId(firstId, lastId)
         GlobalScope.launch(Dispatchers.Main) {
             try {
+
                 val pokemonList = listId.map { async(Dispatchers.IO) {
-                    retrofit.findPokemonById(it).execute().body()!!
+                    val pokemon = retrofit.findPokemonById(it).execute().body()!!
+                    pokemon.specie = retrofit.findPokemonSpecieById(pokemon.id).execute().body()!!
+                    pokemon
                 }}.awaitAll()
-                pokemonList.map { async(Dispatchers.IO){
-                    it.specie = retrofit.findPokemonSpecieById(it.id).execute().body()!!
-                    it.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${it.id}.png"
-                } }
+
                 presenter.onSuccess(pokemonList)
             } catch (e: Exception) {
                 presenter.onFailure(e.message ?: "Error search data from server")
@@ -31,18 +31,3 @@ class PokemonRemoteDataSource {
     }
 
 }
-
-
-/*  Old form:
-                val formListDeferred = listId.map {
-                    async(Dispatchers.IO) { retrofit.findPokemonForm(it).execute() }
-                }
-
-                val specieListDeferred = listId.map {
-                    async(Dispatchers.IO) { retrofit.findPokemonSpecie(it).execute() }
-                }
-                val formListResponses = formListDeferred.awaitAll()
-                val specieListResponses = specieListDeferred.awaitAll()
-                val formList = formListResponses.map { it.body()!! }
-                val specieList = specieListResponses.map { it.body()!! }
-                val pokemonList = ProjectResources.getPokemonList(formList, specieList)*/

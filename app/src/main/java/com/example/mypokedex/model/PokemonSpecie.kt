@@ -16,8 +16,8 @@ data class PokemonColor(
 
 data class Habitat(
     @SerializedName("name") val name: String
-)
+): Serializable
 
 data class Description(
     @SerializedName("flavor_text") val text: String
-)
+): Serializable
