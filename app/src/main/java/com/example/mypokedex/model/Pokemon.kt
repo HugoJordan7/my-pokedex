@@ -10,6 +10,6 @@ data class Pokemon(
     @SerializedName("stats") val stats: List<PokemonStatus>,
     @SerializedName("height") val height: Int,
     @SerializedName("weight") val weight: Int,
-    var specie: PokemonSpecie? = null,
-    var iconUrl: String? = null
+    var specie: PokemonSpecie,
+    var iconUrl: String
 ): Serializable

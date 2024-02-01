@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.HomeContract
 import com.example.mypokedex.model.Pokemon
-import com.example.mypokedex.model.PokemonForm
 import com.example.mypokedex.model.PokemonSpecie
 import retrofit2.Call
 import retrofit2.Response

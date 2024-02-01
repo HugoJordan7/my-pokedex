@@ -5,6 +5,7 @@ import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.util.ProjectResources
 import kotlinx.coroutines.*
 import retrofit2.Response
+import retrofit2.await
 
 class PokemonRemoteDataSource {
 
@@ -14,11 +15,12 @@ class PokemonRemoteDataSource {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val pokemonList = listId.map { async(Dispatchers.IO) {
-                    Pokemon(
-                        retrofit.findPokemonForm(it).execute().body()!!,
-                        retrofit.findPokemonSpecie(it).execute().body()!!
-                    )
+                    retrofit.findPokemonById(it).execute().body()!!
                 }}.awaitAll()
+                pokemonList.map { async(Dispatchers.IO){
+                    it.specie = retrofit.findPokemonSpecieById(it.id).execute().body()!!
+                    it.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${it.id}.png"
+                } }
                 presenter.onSuccess(pokemonList)
             } catch (e: Exception) {
                 presenter.onFailure(e.message ?: "Error search data from server")

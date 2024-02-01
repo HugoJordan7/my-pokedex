@@ -60,16 +60,16 @@ class DetailsFragment: Fragment(), DetailsContract.View {
         presenter.onStart(view)
 
         Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
-        pokemonName.text = getString(R.string.about_name, pokemon.form.name.capitalize())
-        pokemonId.text = getString(R.string.about_id, pokemon.form.id)
+        pokemonName.text = getString(R.string.about_name, pokemon.name.capitalize())
+        pokemonId.text = getString(R.string.about_id, pokemon.id)
 
-        val type1 = ProjectResources.getImageByPokemonType(pokemon.form.listTypes[0].name.name)
+        val type1 = ProjectResources.getImageByPokemonType(pokemon.types[0].name.name)
         primaryType.setImageResource(type1)
-        if (pokemon.form.listTypes.size > 1) {
-            val type2 = ProjectResources.getImageByPokemonType(pokemon.form.listTypes[1].name.name)
+        if (pokemon.types.size > 1) {
+            val type2 = ProjectResources.getImageByPokemonType(pokemon.types[1].name.name)
             secondType.setImageResource(type2)
         }
-        val arrayColors = ProjectResources.getIntArrayColors(pokemon.specie.color.name, context())
+        val arrayColors = pokemon.specie?.color?.let { ProjectResources.getIntArrayColors(it.name, context()) }
         val gradient = ContextCompat.getDrawable(context(),R.drawable.details_header_shape) as GradientDrawable
         gradient.colors = arrayColors
         layoutHeader.background = gradient
