@@ -6,8 +6,7 @@ import java.io.Serializable
 data class PokemonForm(
     @SerializedName("id") var id: Int,
     @SerializedName("name") var name: String,
-    @SerializedName("types") var listTypes: List<PokemonType>,
-    var iconUrl: String = "",
+    @SerializedName("types") var listTypes: List<PokemonType>
 ): Serializable
 
 data class PokemonType(

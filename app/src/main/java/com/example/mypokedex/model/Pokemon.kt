@@ -4,5 +4,6 @@ import java.io.Serializable
 
 data class Pokemon(
     var form: PokemonForm,
-    var specie: PokemonSpecie
+    var specie: PokemonSpecie,
+    var iconUrl: String = ""
 ): Serializable

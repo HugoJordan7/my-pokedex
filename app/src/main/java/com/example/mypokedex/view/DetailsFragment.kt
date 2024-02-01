@@ -1,17 +1,22 @@
 package com.example.mypokedex.view
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.DetailsContract
 import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.presenter.DetailsPresenter
+import com.example.mypokedex.util.ProjectResources
+import com.squareup.picasso.Picasso
 
 class DetailsFragment: Fragment(), DetailsContract.View {
 
@@ -40,6 +45,7 @@ class DetailsFragment: Fragment(), DetailsContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(false)
         presenter = DetailsPresenter(this)
     }
 
@@ -49,8 +55,24 @@ class DetailsFragment: Fragment(), DetailsContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pokemon = (arguments?.getSerializable(POKEMON_KEY) ?: throw Exception("Error search pokemon details")) as Pokemon
+        val pokemon = (arguments?.getSerializable(POKEMON_KEY)
+            ?: throw Exception("Error search pokemon details")) as Pokemon
         presenter.onStart(view)
+
+        Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
+        pokemonName.text = getString(R.string.about_name, pokemon.form.name.capitalize())
+        pokemonId.text = getString(R.string.about_id, pokemon.form.id)
+
+        val type1 = ProjectResources.getImageByPokemonType(pokemon.form.listTypes[0].name.name)
+        primaryType.setImageResource(type1)
+        if (pokemon.form.listTypes.size > 1) {
+            val type2 = ProjectResources.getImageByPokemonType(pokemon.form.listTypes[1].name.name)
+            secondType.setImageResource(type2)
+        }
+        val arrayColors = ProjectResources.getIntArrayColors(pokemon.specie.color.name, context())
+        val gradient = ContextCompat.getDrawable(context(),R.drawable.details_header_shape) as GradientDrawable
+        gradient.colors = arrayColors
+        layoutHeader.background = gradient
     }
 
     override fun showProgressBar() {
@@ -82,7 +104,7 @@ class DetailsFragment: Fragment(), DetailsContract.View {
         pokemonHabitat = view.findViewById(R.id.about_habitat)
         primaryType = view.findViewById(R.id.details_primary_type)
         secondType = view.findViewById(R.id.details_second_type)
-        pokemonDescription = view.findViewById(R.id.details_description)
+        pokemonDescription = view.findViewById(R.id.details_description_text)
         hpStatus = view.findViewById(R.id.hp_status)
         attackStatus = view.findViewById(R.id.attack_status)
         defenseStatus = view.findViewById(R.id.defense_status)

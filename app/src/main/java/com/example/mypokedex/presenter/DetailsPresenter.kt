@@ -12,7 +12,7 @@ class DetailsPresenter(
 
     override fun onStart(view: View) {
         this.view.findAllViews(view)
-        this.view.showProgressBar()
+        //this.view.showProgressBar()
     }
 
     override fun findPokemonDetails() {

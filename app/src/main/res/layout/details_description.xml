@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/details_description"
+        android:id="@+id/details_description_text"
         android:textSize="16sp"
         android:textColor="@color/black_transparent_1"
         android:lineSpacingExtra="5dp"

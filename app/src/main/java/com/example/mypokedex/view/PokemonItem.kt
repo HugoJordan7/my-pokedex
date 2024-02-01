@@ -31,9 +31,9 @@ class PokemonItem(
 
     override fun bind(viewHolder: PokemonViewHolder, position: Int) {
         val context = if(homeFragment != null) homeFragment!!.context() else searchFragment!!.context()
-        pokemon.form.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.form.id}.png"
+        pokemon.iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.form.id}.png"
         val pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
-        Picasso.get().load(pokemon.form.iconUrl).into(pokemonIcon)
+        Picasso.get().load(pokemon.iconUrl).into(pokemonIcon)
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_name).text = pokemon.form.name.capitalize()
         viewHolder.itemView.findViewById<TextView>(R.id.pokemon_id).text = context.getString(R.string.pokemon_id, pokemon.form.id)
         val primaryType = viewHolder.itemView.findViewById<ImageView>(R.id.primary_type)
@@ -51,7 +51,7 @@ class PokemonItem(
         }
 
         val gradient = GradientDrawable(
-            GradientDrawable.Orientation.RIGHT_LEFT,
+            GradientDrawable.Orientation.LEFT_RIGHT,
             ProjectResources.getIntArrayColors(pokemon.specie.color.name, context)
         )
         gradient.cornerRadius = 90f
