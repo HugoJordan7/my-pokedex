@@ -20,7 +20,7 @@ class TypeItem(
     }
 
     companion object{
-        fun getTypeItemListByNames(list: List<String>): List<TypeItem>{
+        fun getTypeItemListByNames(list: List<String>): MutableList<TypeItem>{
             val typeList: MutableList<TypeItem> = mutableListOf()
             for (typeName in list){
                 val image = ProjectResources.getImageByPokemonType(typeName)

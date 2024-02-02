@@ -22,4 +22,7 @@ interface PokeAPI {
         @Query("offset") offset: Int = 0,
         @Query("limit") limit: Int = 1000
     ): Call<PokemonNamesList>
+
+    @GET("type/{name}")
+    fun findWeaknessesByTypeName(@Path("name") typeName: String): Call<Type>
 }

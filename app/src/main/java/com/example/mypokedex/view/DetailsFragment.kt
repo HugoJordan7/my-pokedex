@@ -60,6 +60,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.onStart(view)
+        presenter.findWeaknesses(pokemon)
     }
 
     fun bindHeader() {
@@ -108,10 +109,12 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         rvStatus.adapter = adapterStatus
     }
 
-    fun bindWeaknesses(){
+    fun bindWeaknesses(weakTypesList: List<String>){
+        rvWeaknesses.layoutManager = GridLayoutManager(context(),2)
         val weakAdapter = GroupieAdapter()
-        val typeNamesList = mutableListOf<String>()
-        weakAdapter.addAll(TypeItem.getTypeItemListByNames(typeNamesList))
+        rvWeaknesses.adapter = weakAdapter
+        weakAdapter.addAll(TypeItem.getTypeItemListByNames(weakTypesList))
+        weakAdapter.notifyDataSetChanged()
     }
 
     override fun showProgressBar() {
