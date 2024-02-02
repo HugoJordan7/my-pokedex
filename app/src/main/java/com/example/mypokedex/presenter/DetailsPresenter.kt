@@ -41,7 +41,30 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
     }
 
     override fun onSuccessWeaknesses(primary: Type, second: Type) {
+        val primaryListWeak = primary?.relations?.doubleDamageFrom?.map { it?.name } as MutableList<String>
+        val secondListStrong = second?.relations?.halfDamageFrom?.map { it?.name } as MutableList<String>
+        for(weak in primaryListWeak) {
+            for (strong in secondListStrong) {
+                if(weak == strong){
+                //If pokemon is weak and strong against the type X, so X leaving of list weaknesses
+                    primaryListWeak.remove(weak)
+                }
+            }
+        }
 
+        val secondListWeak = second?.relations?.doubleDamageFrom?.map { it?.name } as MutableList<String>
+        val primaryListStrong = primary?.relations?.halfDamageFrom?.map { it?.name } as MutableList<String>
+        for(weak in secondListStrong) {
+            for (strong in primaryListStrong) {
+                if(weak == strong){
+                    //If pokemon is weak and strong against the type X, so X leaving of list weaknesses
+                    secondListWeak.remove(weak)
+                }
+            }
+        }
+
+        val weaknessesList = primaryListWeak + secondListWeak
+        view.bindWeaknesses(weaknessesList)
     }
 
     override fun onFailure(message: String) {
