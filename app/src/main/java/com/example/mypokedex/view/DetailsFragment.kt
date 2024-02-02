@@ -95,9 +95,9 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         }
     }
 
-    fun bindDescription() {
+    fun bindDescription() { // 6 - Ruby/English and 42 - OmegaRuby/Spanish
         pokemonDescription.text =
-            pokemon.specie?.descriptionList?.get(6)?.text ?: getString(R.string.unknown)
+            pokemon.specie?.descriptionList?.get(42)?.text ?: getString(R.string.unknown)
     }
 
     fun bindStats() {
@@ -106,6 +106,12 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         adapterStatus.notifyDataSetChanged()
         rvStatus.layoutManager = GridLayoutManager(context(), 2)
         rvStatus.adapter = adapterStatus
+    }
+
+    fun bindWeaknesses(){
+        val weakAdapter = GroupieAdapter()
+        val typeNamesList = mutableListOf<String>()
+        weakAdapter.addAll(TypeItem.getTypeItemListByNames(typeNamesList))
     }
 
     override fun showProgressBar() {

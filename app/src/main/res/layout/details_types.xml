@@ -27,7 +27,7 @@
         android:id="@+id/details_second_type"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="40dp"
         app:layout_constraintBottom_toBottomOf="@id/details_primary_type"
         app:layout_constraintStart_toEndOf="@id/details_primary_type"
         tools:src="@drawable/poison_type" />

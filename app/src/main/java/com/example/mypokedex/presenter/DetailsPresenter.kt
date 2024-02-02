@@ -17,6 +17,7 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
             bindDescription()
             bindTypes()
             bindStats()
+            bindWeaknesses()
 
             hideProgressBar()
         }

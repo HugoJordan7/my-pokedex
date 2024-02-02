@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/type_image"
         android:layout_width="@dimen/type_image_width"
         android:layout_height="@dimen/type_image_height"
         android:src="@drawable/grass_type"
