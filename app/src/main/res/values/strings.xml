@@ -29,4 +29,11 @@
     <string name="weaknesses">Fraquezas</string>
     <string name="evolutions">Evoluções</string>
     <string name="unknown">Desconhecido</string>
+
+    <string name="about_title">SOBRE</string>
+    <string name="types_title">TIPOS</string>
+    <string name="description_title">DESCRIÇÃO</string>
+    <string name="stats_title">STATUS</string>
+    <string name="weaknesses_title">FRAQUEZAS</string>
+    <string name="evolutions_title">EVOLUÇÕES</string>
 </resources>

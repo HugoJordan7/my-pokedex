@@ -59,11 +59,25 @@ object ProjectResources {
             "pink" to arrayOf(R.color.pink_transparent_3, R.color.pink_transparent_2, R.color.pink_transparent_1),
             "purple" to arrayOf(R.color.purple_transparent_3, R.color.purple_transparent_2, R.color.purple_transparent_1),
             "red" to arrayOf(R.color.red_transparent_3, R.color.red_transparent_2, R.color.red_transparent_1),
-            "white" to arrayOf(R.color.write_transparent_3, R.color.write_transparent_2, R.color.write_transparent_1),
+            "white" to arrayOf(R.color.white_transparent_3, R.color.white_transparent_2, R.color.white_transparent_1),
             "yellow" to arrayOf(R.color.yellow_transparent_3, R.color.yellow_transparent_2, R.color.yellow_transparent_1),
         )
         var arrayId = colorMap[pokemonColor.toLowerCase()] ?: colorMap["black"] as Array<Int>
         return arrayId.map { ContextCompat.getColor(context,it) }.toIntArray()
+    }
+
+    fun getColorTheme(pokemonColor: String, context: Context): Int {
+        val colorId = when(pokemonColor) {
+            "blue" -> R.color.blue_theme
+            "green" -> R.color.green_theme
+            "pink" -> R.color.pink_theme
+            "purple" -> R.color.purple_theme
+            "red" -> R.color.red_theme
+            "white" -> R.color.white_theme
+            "yellow" -> R.color.yellow_theme
+            else -> R.color.black_theme
+        }
+        return ContextCompat.getColor(context,colorId)
     }
 
 }

@@ -10,7 +10,8 @@
     <TextView
         android:id="@+id/details_about_title"
         style="@style/titles_poke_details"
-        android:text="@string/about"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/about_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

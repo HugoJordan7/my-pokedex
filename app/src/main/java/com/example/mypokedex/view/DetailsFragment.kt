@@ -40,6 +40,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     private lateinit var pokemonDescription: TextView
     private lateinit var rvStatus: RecyclerView
     private lateinit var rvWeaknesses: RecyclerView
+    private lateinit var arrayColors: IntArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +66,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         val pokeIconUrl = ProjectResources.getPokeImgUrlById(pokemon.id)
         Picasso.get().load(pokeIconUrl).into(pokemonIcon)
         val colorName: String = pokemon.specie?.color?.name ?: "black"
-        val arrayColors = ProjectResources.getIntArrayColors(colorName, context())
+        arrayColors = ProjectResources.getIntArrayColors(colorName, context())
         val gradient = ContextCompat.getDrawable(
             context(),
             R.drawable.details_header_shape
@@ -100,11 +101,10 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     }
 
     fun bindStats() {
-        val adapterStatus = GroupieAdapter().apply {
-            addAll(StatusItem.getStatusItemList(context(),pokemon))
-            notifyDataSetChanged()
-        }
-        rvStatus.layoutManager = GridLayoutManager(context(),2)
+        val adapterStatus = GroupieAdapter()
+        adapterStatus.addAll(StatusItem.getStatusItemList(context(), pokemon))
+        adapterStatus.notifyDataSetChanged()
+        rvStatus.layoutManager = GridLayoutManager(context(), 2)
         rvStatus.adapter = adapterStatus
     }
 

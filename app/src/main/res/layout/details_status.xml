@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/details_status_title"
-        android:text="@string/stats"
+        android:text="@string/stats_title"
         style="@style/titles_poke_details"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
