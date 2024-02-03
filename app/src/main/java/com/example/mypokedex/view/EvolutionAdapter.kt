@@ -1,18 +1,15 @@
 package com.example.mypokedex.view
 
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.model.EvolutionItem
-import com.example.mypokedex.util.ProjectResources
+import com.squareup.picasso.Picasso
 
 class EvolutionAdapter(
     private val evolutionList: List<EvolutionItem>,
@@ -38,16 +35,9 @@ class EvolutionAdapter(
             val itemName = itemView.findViewById<TextView>(R.id.name_evolution)
             val itemId = itemView.findViewById<TextView>(R.id.id_evolution)
             val itemImage = itemView.findViewById<ImageView>(R.id.img_evolution)
-            val itemLayoutImage = itemView.findViewById<LinearLayout>(R.id.layout_img_evolution)
-            itemName.text = evolutionItem.pokeName
+            itemName.text = evolutionItem.pokeName.capitalize()
             itemId.text = context.getString(R.string.evolution_id,evolutionItem.pokeId)
-            itemImage.setImageResource(evolutionItem.pokeImage)
-            val gradient = ContextCompat.getDrawable(
-                context,
-                R.drawable.evolutions_shape
-            ) as GradientDrawable
-            gradient.colors = ProjectResources.getIntArrayColors(evolutionItem.pokeColor,context)
-            itemLayoutImage.background = gradient
+            Picasso.get().load(evolutionItem.pokeImage).into(itemImage)
         }
     }
 

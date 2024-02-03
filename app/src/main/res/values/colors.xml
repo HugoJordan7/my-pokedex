@@ -40,14 +40,14 @@
     <color name="yellow_transparent_2">#B3D5BE00</color>
     <color name="yellow_transparent_3">#1AD5BE00</color>
 
-    <color name="black_theme">#000000</color>
-    <color name="blue_theme">#000B71</color>
-    <color name="green_theme">#075700</color>
-    <color name="pink_theme">#77004F</color>
-    <color name="purple_theme">#E6300087</color>
-    <color name="red_theme">#880000</color>
-    <color name="white_theme">#004339</color>
-    <color name="yellow_theme">#5E5400</color>
+    <color name="black_theme">#4D000000</color>
+    <color name="blue_theme">#660019FF</color>
+    <color name="green_theme">#6615FF00</color>
+    <color name="pink_theme">#66FF00A9</color>
+    <color name="purple_theme">#665B00FF</color>
+    <color name="red_theme">#66FF0000</color>
+    <color name="white_theme">#6600FFD9</color>
+    <color name="yellow_theme">#66FFE400</color>
 
 
 </resources>

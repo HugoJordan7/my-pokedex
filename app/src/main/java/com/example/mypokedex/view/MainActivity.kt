@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home_fragment, R.id.unknown_pokemon_fragment),
+            setOf(R.id.home_fragment),
             drawerLayout
         )
         navigationView.setupWithNavController(navController)

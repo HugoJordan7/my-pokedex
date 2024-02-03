@@ -66,7 +66,7 @@ object ProjectResources {
         return arrayId.map { ContextCompat.getColor(context,it) }.toIntArray()
     }
 
-    fun getColorTheme(pokemonColor: String, context: Context): Int {
+    fun getEvolutionTheme(pokemonColor: String, context: Context): Int {
         val colorId = when(pokemonColor) {
             "blue" -> R.color.blue_theme
             "green" -> R.color.green_theme

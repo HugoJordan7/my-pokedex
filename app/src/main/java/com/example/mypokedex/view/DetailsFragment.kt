@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.DetailsContract
+import com.example.mypokedex.model.EvolutionItem
 import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.presenter.DetailsPresenter
 import com.example.mypokedex.util.ProjectResources
@@ -42,6 +43,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     private lateinit var rvWeaknesses: RecyclerView
     private lateinit var rvEvolutions: RecyclerView
     private lateinit var layoutEvolutions: LinearLayout
+    private lateinit var layoutRvEvo: LinearLayout
     private lateinit var arrayColors: IntArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +65,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.onStart(view)
         presenter.findWeaknesses(pokemon)
+        presenter.findEvolutions(pokemon)
     }
 
     fun bindHeader() {
@@ -119,8 +122,14 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         weakAdapter.notifyDataSetChanged()
     }
 
-    fun bindEvolutions(){
-        layoutEvolutions.visibility = View.GONE
+    fun bindEvolutions(list: List<EvolutionItem>, columns: Int){
+        if(columns > 1) layoutEvolutions.visibility = View.VISIBLE
+        var gradient = ContextCompat.getDrawable(context(),R.drawable.evolutions_shape) as GradientDrawable
+        val color = ProjectResources.getEvolutionTheme(pokemon.specie?.color?.name ?: "black",context())
+        gradient.setColor(color)
+        layoutRvEvo.background = gradient
+        rvEvolutions.layoutManager = GridLayoutManager(context(),columns)
+        rvEvolutions.adapter = EvolutionAdapter(list,context())
     }
 
     override fun showProgressBar() {
@@ -152,7 +161,8 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         rvStatus = view.findViewById(R.id.rv_status)
         rvWeaknesses = view.findViewById(R.id.rv_weaknesses)
         rvEvolutions = view.findViewById(R.id.rv_evolutions)
-        layoutEvolutions = view.findViewById(R.id.layout_evolutions)
+        layoutEvolutions = view.findViewById(R.id.details_evolutions)
+        layoutRvEvo = view.findViewById(R.id.rv_evolutions_layout)
     }
 
 }

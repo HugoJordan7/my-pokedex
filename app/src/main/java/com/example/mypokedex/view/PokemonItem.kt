@@ -31,7 +31,11 @@ class PokemonItem(
     override fun getLayout() = R.layout.pokemon_item
 
     override fun bind(viewHolder: PokemonViewHolder, position: Int) {
-        val context = if(homeFragment != null) homeFragment!!.context() else searchFragment!!.context()
+        val context = if(homeFragment != null) {
+            homeFragment!!.context()
+        } else {
+            searchFragment!!.context()
+        }
         val pokemonIcon = viewHolder.itemView.findViewById<ImageView>(R.id.pokemon_icon)
         val pokeIconUrl = ProjectResources.getPokeImgUrlById(pokemon.id)
         Picasso.get().load(pokeIconUrl).into(pokemonIcon)

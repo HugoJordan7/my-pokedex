@@ -3,18 +3,13 @@
     android:orientation="vertical"
     android:layout_width="@dimen/image_evolution_width"
     android:layout_height="wrap_content"
-    android:id="@+id/evolution"
     android:gravity="center"
-    android:layout_marginRight="15dp"
-    android:layout_marginLeft="15dp">
-    <LinearLayout style="@style/bg_image_evolution"
-        android:id="@+id/layout_img_evolution">
-        <ImageView
-            style="@style/image_evolution"
-            android:src="@drawable/poke3"
-            android:id="@+id/img_evolution"/>
-    </LinearLayout>
-
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp">
+    <ImageView
+        style="@style/image_evolution"
+        android:src="@drawable/poke3"
+        android:id="@+id/img_evolution"/>
     <TextView
         android:id="@+id/name_evolution"
         style="@style/text_view_evolution"

@@ -1,58 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:visibility="gone"
     xmlns:tools="http://schemas.android.com/tools"
     tools:visibility="visible"
-    android:layout_marginBottom="30dp"
     android:orientation="vertical"
-    android:id="@+id/layout_evolutions"
+    android:id="@+id/details_evolutions"
     app:layout_constraintTop_toBottomOf="@id/details_weaknesses">
 
     <TextView
         android:id="@+id/details_evolutions_title"
         android:text="@string/evolutions_title"
-        style="@style/titles_poke_details"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        style="@style/titles_poke_details"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_evolutions"
-        app:layout_constraintTop_toBottomOf="@id/details_evolutions_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/rv_evolutions_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:spanCount="3"
-        tools:itemCount="3"
-        tools:listitem="@layout/evolution_item"
-        />
+        android:gravity="center_horizontal"
+        android:background="@drawable/evolutions_shape"
+        android:layout_marginLeft="@dimen/details_margin_left"
+        android:layout_marginRight="@dimen/details_margin_left"
+        android:layout_marginBottom="20dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_evolutions"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:spanCount="3"
+            tools:itemCount="3"
+            tools:listitem="@layout/evolution_item"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/arrow_center"
-        style="@style/arrow_evolution"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageView
-        android:id="@+id/arrow_start"
-        style="@style/arrow_evolution"
-        android:layout_marginEnd="130dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageView
-        android:id="@+id/arrow_end"
-        style="@style/arrow_evolution"
-        android:layout_marginStart="130dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

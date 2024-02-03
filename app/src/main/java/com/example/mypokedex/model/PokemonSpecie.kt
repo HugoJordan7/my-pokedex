@@ -6,7 +6,8 @@ import java.io.Serializable
 data class PokemonSpecie(
     @SerializedName("color") var color: PokemonColor,
     @SerializedName("habitat") val habitat: Habitat,
-    @SerializedName("flavor_text_entries") val descriptionList: List<Description>
+    @SerializedName("flavor_text_entries") val descriptionList: List<Description>,
+    @SerializedName("evolution_chain") val evolutionChain: EvolutionChain
 ): Serializable
 
 data class PokemonColor(
@@ -20,4 +21,8 @@ data class Habitat(
 
 data class Description(
     @SerializedName("flavor_text") val text: String
+): Serializable
+
+data class EvolutionChain(
+    @SerializedName("url") val url: String
 ): Serializable

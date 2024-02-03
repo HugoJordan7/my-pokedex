@@ -1,11 +1,11 @@
 package com.example.mypokedex.data
 
+import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.model.Type
 import com.example.mypokedex.presenter.DetailsPresenter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
 
@@ -33,5 +33,41 @@ class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
             }
         }
     }
+
+    fun findEvolutions(url: String){
+        val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
+
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val evolutions = async(Dispatchers.IO){
+                    retrofit.findEvolutionChainByUrl(url).execute().body()!!
+                }.await()
+                presenter.onSuccessEvolutions(evolutions)
+            }catch (e: Exception){
+                presenter.onFailure(e.message ?: errorMessage)
+            } finally {
+                presenter.onComplete()
+            }
+
+        }
+    }
+
+    fun findPokemonList(listNames: List<String>){
+        val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val pokemonList = listNames.map { async(Dispatchers.IO){
+                    retrofit.findPokemonByName(it).execute().body()!!
+                } }.awaitAll()
+                presenter.onSuccessPokemonEvolution(pokemonList)
+            }catch (e: Exception){
+                presenter.onFailure(e.message ?: errorMessage)
+            } finally {
+                presenter.onComplete()
+            }
+
+        }
+    }
+
 
 }

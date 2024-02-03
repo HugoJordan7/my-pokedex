@@ -4,8 +4,8 @@ import android.util.Log
 import android.view.View
 import com.example.mypokedex.contract.DetailsContract
 import com.example.mypokedex.data.DetailsRemoteDataSource
-import com.example.mypokedex.model.Pokemon
-import com.example.mypokedex.model.Type
+import com.example.mypokedex.model.*
+import com.example.mypokedex.util.ProjectResources
 import com.example.mypokedex.view.DetailsFragment
 
 class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Presenter {
@@ -21,7 +21,6 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
             bindDescription()
             bindTypes()
             bindStats()
-            bindEvolutions()
         }
     }
 
@@ -64,6 +63,41 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
         }
         view.bindWeaknesses(response)
     }
+
+    fun findEvolutions(pokemon: Pokemon){
+        val evolutionsUrl = pokemon.specie?.evolutionChain?.url!!
+        dataSource.findEvolutions(evolutionsUrl)
+    }
+
+    fun onSuccessEvolutions(evolutions: Evolutions){
+        val listEvolutions: MutableList<String> = mutableListOf()
+        listEvolutions.add(evolutions.chain.species.name) //First Chain Evolution
+        val secondChain = evolutions.chain.evolvesTo
+        if(secondChain.isNotEmpty()){
+            for(chain2 in secondChain){ //Second chain evolution
+                listEvolutions.add(chain2.species.name)
+                if (chain2.evolvesTo.isNotEmpty()){
+                    for(chain3 in chain2.evolvesTo){ //Three chain evolution
+                        listEvolutions.add(chain3.species.name)
+                    }
+                }
+            }
+        }
+        Log.i("evo","${listEvolutions.size}")
+        for(name in listEvolutions){
+            Log.i("evo","$name")
+        }
+        dataSource.findPokemonList(listEvolutions)
+    }
+
+    fun onSuccessPokemonEvolution(response: List<Pokemon>){
+        val listEvolutionItem = response.map { EvolutionItem(
+            it.name, it.id, ProjectResources.getPokeImgUrlById(it.id)
+        ) }
+        val columns = if (listEvolutionItem.size == 1) 1 else if(listEvolutionItem.size == 2) 2 else 3
+        view.bindEvolutions(listEvolutionItem,columns)
+    }
+
 
     override fun onFailure(message: String) {
         view.showFailure(message)
