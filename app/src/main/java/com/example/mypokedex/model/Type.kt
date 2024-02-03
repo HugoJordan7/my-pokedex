@@ -8,5 +8,6 @@ data class Type(
 
 data class Relations(
     @SerializedName("double_damage_from") val doubleDamageFrom: List<PokemonTypeName>?,
-    @SerializedName("half_damage_from") val halfDamageFrom: List<PokemonTypeName>?
+    @SerializedName("half_damage_from") val halfDamageFrom: List<PokemonTypeName>?,
+    @SerializedName("no_damage_from") val noDamageFrom: List<PokemonTypeName>?
 )

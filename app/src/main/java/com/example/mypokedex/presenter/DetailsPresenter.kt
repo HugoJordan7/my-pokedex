@@ -31,7 +31,15 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
     }
 
     override fun onSuccessWeaknesses(primary: Type) {
-        var response = primary?.relations?.doubleDamageFrom?.map { it?.name } ?: emptyList()
+        var list = primary?.relations?.doubleDamageFrom?.map { it?.name } ?: emptyList()
+        val response: MutableList<String> = mutableListOf()
+        if(list.isNotEmpty()){
+            val noDamageList = primary?.relations?.noDamageFrom?.map { it?.name } ?: emptyList()
+            response.addAll(list)
+            for (type in noDamageList){
+                response.filter { it == type }
+            }
+        }
         view.bindWeaknesses(response)
     }
 
@@ -45,7 +53,15 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
         secondListWeak.removeAll(primaryListStrong)
 
         val weaknessesList = primaryListWeak + secondListWeak
-        view.bindWeaknesses(weaknessesList)
+        val response: MutableList<String> = mutableListOf()
+        if(weaknessesList.isNotEmpty()){
+            response.addAll(weaknessesList)
+            val noDamagePrimaryList = primary?.relations?.noDamageFrom?.map { it?.name } ?: emptyList()
+            val noDamageSecondList = second?.relations?.noDamageFrom?.map { it?.name } ?: emptyList()
+            val noDamageList = noDamagePrimaryList + noDamageSecondList
+            response.removeAll(noDamageList)
+        }
+        view.bindWeaknesses(response)
     }
 
     override fun onFailure(message: String) {
