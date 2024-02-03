@@ -35,32 +35,26 @@
         <item name="android:layout_height">@dimen/bg_image_evolution_height</item>
     </style>
 
-    <style name="layout_item_evolution">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:gravity">center_horizontal</item>
-    </style>
-
     <style name="text_view_evolution">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="arrow_evolution">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:src">@drawable/ic_evolution_arrow</item>
-        <item name="android:layout_marginTop">45dp</item>
+        <item name="android:layout_marginTop">95dp</item>
+        <item name="android:visibility">gone</item>
     </style>
 
-    <dimen name="image_evolution_width">110dp</dimen>
-    <dimen name="image_evolution_height">100dp</dimen>
+    <dimen name="image_evolution_width">100dp</dimen>
+    <dimen name="image_evolution_height">90dp</dimen>
 
-    <dimen name="bg_image_evolution_width">110dp</dimen>
-    <dimen name="bg_image_evolution_height">110dp</dimen>
+    <dimen name="bg_image_evolution_width">100dp</dimen>
+    <dimen name="bg_image_evolution_height">100dp</dimen>
 
     <dimen name="nav_view_elements_margin_bottom">20dp</dimen>
     <dimen name="details_margin_right">40dp</dimen>

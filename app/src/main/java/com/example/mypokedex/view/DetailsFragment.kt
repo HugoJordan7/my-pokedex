@@ -40,6 +40,8 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     private lateinit var pokemonDescription: TextView
     private lateinit var rvStatus: RecyclerView
     private lateinit var rvWeaknesses: RecyclerView
+    private lateinit var rvEvolutions: RecyclerView
+    private lateinit var layoutEvolutions: LinearLayout
     private lateinit var arrayColors: IntArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,6 +119,10 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         weakAdapter.notifyDataSetChanged()
     }
 
+    fun bindEvolutions(){
+        layoutEvolutions.visibility = View.GONE
+    }
+
     override fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
     }
@@ -145,6 +151,8 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         pokemonDescription = view.findViewById(R.id.details_description_text)
         rvStatus = view.findViewById(R.id.rv_status)
         rvWeaknesses = view.findViewById(R.id.rv_weaknesses)
+        rvEvolutions = view.findViewById(R.id.rv_evolutions)
+        layoutEvolutions = view.findViewById(R.id.layout_evolutions)
     }
 
 }

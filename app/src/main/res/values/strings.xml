@@ -37,4 +37,5 @@
     <string name="weaknesses_title">FRAQUEZAS</string>
     <string name="evolutions_title">EVOLUÇÕES</string>
     <string name="size_dmg">%1$sx</string>
+    <string name="evolution_id">ID: %1$d</string>
 </resources>
