@@ -11,33 +11,21 @@ class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
 
     private val errorMessage = "Error search data from server"
 
-    fun findWeaknesses(primaryType: String){
+    fun findWeaknesses(primaryType: String, secondType: String?){
         val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
         GlobalScope.launch(Dispatchers.Main){
             try {
                 val weakListPrimaryType: Type = withContext(Dispatchers.IO) {
                     retrofit.findWeaknessesByTypeName(primaryType).execute().body()!!
                 }
-                presenter.onSuccessWeaknesses(weakListPrimaryType)
-            } catch (e: Exception){
-                presenter.onFailure(e.message ?: errorMessage)
-            } finally {
-                presenter.onComplete()
-            }
-        }
-    }
-
-    fun findWeaknesses(primaryType: String, secondType: String){
-        val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
-        GlobalScope.launch(Dispatchers.Main){
-            try {
-                val weakListPrimaryType: Type = withContext(Dispatchers.IO) {
-                    retrofit.findWeaknessesByTypeName(primaryType).execute().body()!!
+                if(secondType == null){
+                    presenter.onSuccessWeaknesses(weakListPrimaryType)
+                }else{
+                    val weakListSecondType: Type = withContext(Dispatchers.IO) {
+                        retrofit.findWeaknessesByTypeName(secondType).execute().body()!!
+                    }
+                    presenter.onSuccessWeaknesses(weakListPrimaryType,weakListSecondType)
                 }
-                val weakListSecondType: Type = withContext(Dispatchers.IO) {
-                    retrofit.findWeaknessesByTypeName(secondType).execute().body()!!
-                }
-                presenter.onSuccessWeaknesses(weakListPrimaryType,weakListSecondType)
             } catch (e: Exception){
                 presenter.onFailure(e.message ?: errorMessage)
             } finally {

@@ -25,14 +25,9 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
     }
 
     override fun findWeaknesses(pokemon: Pokemon) {
-        val primaryType = pokemon.types[0].name.name
-        var secondType: String? = null
-        if(pokemon.types.size == 1){
-            dataSource.findWeaknesses(primaryType)
-        } else{
-            secondType = pokemon.types[1].name.name
-            dataSource.findWeaknesses(primaryType,secondType)
-        }
+        val primaryType = pokemon.types[0].name.name.toLowerCase()
+        val secondType: String? =  if(pokemon.types.size > 1) pokemon.types[1].name.name.toLowerCase() else null
+        dataSource.findWeaknesses(primaryType, secondType)
     }
 
     override fun onSuccessWeaknesses(primary: Type) {
@@ -43,25 +38,11 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
     override fun onSuccessWeaknesses(primary: Type, second: Type) {
         val primaryListWeak = primary?.relations?.doubleDamageFrom?.map { it?.name } as MutableList<String>
         val secondListStrong = second?.relations?.halfDamageFrom?.map { it?.name } as MutableList<String>
-        for(weak in primaryListWeak) {
-            for (strong in secondListStrong) {
-                if(weak == strong){
-                //If pokemon is weak and strong against the type X, so X leaving of list weaknesses
-                    primaryListWeak.remove(weak)
-                }
-            }
-        }
+        primaryListWeak.removeAll(secondListStrong)
 
         val secondListWeak = second?.relations?.doubleDamageFrom?.map { it?.name } as MutableList<String>
         val primaryListStrong = primary?.relations?.halfDamageFrom?.map { it?.name } as MutableList<String>
-        for(weak in secondListStrong) {
-            for (strong in primaryListStrong) {
-                if(weak == strong){
-                    //If pokemon is weak and strong against the type X, so X leaving of list weaknesses
-                    secondListWeak.remove(weak)
-                }
-            }
-        }
+        secondListWeak.removeAll(primaryListStrong)
 
         val weaknessesList = primaryListWeak + secondListWeak
         view.bindWeaknesses(weaknessesList)
