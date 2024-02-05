@@ -49,5 +49,12 @@
     <color name="white_theme">#6600FFD9</color>
     <color name="yellow_theme">#66FFE400</color>
 
+    <color name="red_unknown_start">#FF0000</color>
+    <color name="red_unknown_center">#B3FF0000</color>
+    <color name="red_unknown_end">#66FF0000</color>
+
+    <color name="blue_unknown_start">#6DFFF3</color>
+    <color name="blue_unknown_center">#00CFBE</color>
+    <color name="blue_unknown_end">#005BA3</color>
 
 </resources>

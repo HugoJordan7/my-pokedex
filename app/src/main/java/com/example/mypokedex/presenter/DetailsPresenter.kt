@@ -2,6 +2,7 @@ package com.example.mypokedex.presenter
 
 import android.util.Log
 import android.view.View
+import com.example.mypokedex.R
 import com.example.mypokedex.contract.DetailsContract
 import com.example.mypokedex.data.DetailsRemoteDataSource
 import com.example.mypokedex.model.*
@@ -25,12 +26,23 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
     }
 
     fun getDescriptionText(descriptionList: List<Description>): String{
+        if(descriptionList.isEmpty()) return view.getString(R.string.unknown)
         for (desc in descriptionList){
             if(desc.language.name == "es" && desc.version.name == "omega-ruby"){
                 return desc.text
             }
         }
-        return descriptionList[4].text
+        for (desc in descriptionList){
+            if(desc.language.name == "es"){
+                return desc.text
+            }
+        }
+        for (desc in descriptionList){
+            if(desc.language.name == "en"){
+                return desc.text
+            }
+        }
+        return descriptionList[0].text
     }
 
 

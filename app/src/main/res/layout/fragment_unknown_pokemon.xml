@@ -2,6 +2,58 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff0">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/unknown_background"
+    android:id="@+id/layout_unknown">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/unknown_title"
+
+        android:textColor="#FFE500"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/layout_image_unknown"
+        app:layout_constraintStart_toStartOf="@id/layout_image_unknown"
+        app:layout_constraintEnd_toEndOf="@id/layout_image_unknown"/>
+
+    <LinearLayout
+        android:id="@+id/layout_image_unknown"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        android:background="@drawable/unknown_image_bg"
+        android:gravity="center">
+
+        <ImageView
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/unknown_image"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/poke3"
+            android:scaleType="fitCenter"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/unknown_progress"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:indeterminateTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/layout_image_unknown"
+        app:layout_constraintEnd_toEndOf="@id/layout_image_unknown"
+        app:layout_constraintStart_toStartOf="@id/layout_image_unknown"
+        app:layout_constraintTop_toTopOf="@id/layout_image_unknown" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
