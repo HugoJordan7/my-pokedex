@@ -24,6 +24,16 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
         }
     }
 
+    fun getDescriptionText(descriptionList: List<Description>): String{
+        for (desc in descriptionList){
+            if(desc.language.name == "es" && desc.version.name == "omega-ruby"){
+                return desc.text
+            }
+        }
+        return descriptionList[4].text
+    }
+
+
     override fun findWeaknesses(pokemon: Pokemon) {
         val primaryType = pokemon.types[0].name.name.toLowerCase()
         val secondType: String? =  if(pokemon.types.size > 1) pokemon.types[1].name.name.toLowerCase() else null

@@ -11,7 +11,7 @@ object HomeUtils {
 
     val adapter = GroupieAdapter()
 
-    const val RANGE = 20
+    const val RANGE = 100
 
     fun getScroll(presenter: HomeContract.Presenter, progressBar: ProgressBar) = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

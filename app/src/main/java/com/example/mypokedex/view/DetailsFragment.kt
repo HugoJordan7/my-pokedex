@@ -101,9 +101,9 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         }
     }
 
-    fun bindDescription() { // 6 - Ruby/English and 42 - OmegaRuby/Spanish
-        pokemonDescription.text =
-            pokemon.specie?.descriptionList?.get(42)?.text ?: getString(R.string.unknown)
+    fun bindDescription() {
+        val description = presenter.getDescriptionText(pokemon?.specie?.descriptionList!!)
+        pokemonDescription.text = description
     }
 
     fun bindStats() {

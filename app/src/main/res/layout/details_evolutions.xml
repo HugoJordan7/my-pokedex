@@ -23,8 +23,7 @@
         android:gravity="center_horizontal"
         android:background="@drawable/evolutions_shape"
         android:layout_marginLeft="@dimen/details_margin_left"
-        android:layout_marginRight="@dimen/details_margin_left"
-        android:layout_marginBottom="20dp">
+        android:layout_marginRight="@dimen/details_margin_left">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_evolutions"
             app:layout_constraintStart_toStartOf="parent"

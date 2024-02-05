@@ -20,7 +20,19 @@ data class Habitat(
 ): Serializable
 
 data class Description(
-    @SerializedName("flavor_text") val text: String
+    @SerializedName("flavor_text") val text: String,
+    @SerializedName("language") val language: Language,
+    @SerializedName("version") val version: Version
+): Serializable
+
+data class Language(
+    @SerializedName("name") var name: String,
+    @SerializedName("url") var url: String,
+): Serializable
+
+data class Version(
+    @SerializedName("name") var name: String,
+    @SerializedName("url") var url: String,
 ): Serializable
 
 data class EvolutionChain(
