@@ -9,7 +9,7 @@ class PokemonRemoteDataSource {
     fun findAllPokemon(presenter: HomeContract.Presenter, firstId: Int, lastId: Int) {
         val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
         val listId = ProjectResources.getListOfRangeId(firstId, lastId)
-        val chunks = listId.chunked(5)
+        val chunks = listId.chunked(20)
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val pokemonList = chunks.flatMap { chunk ->
