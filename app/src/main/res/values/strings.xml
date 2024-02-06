@@ -41,4 +41,9 @@
     <string name="app_about_description">MyPokedex é um app que exibe os dados de 1000 pokemons diferentes da franquia Pokemon da Nintendo, ele possui um mecanismo de pesquisa para facilitar a busca por um pokemon específico, além de possuir um jogo onde o usuário deve descobrir o nome do pokemon pela sua imagem em um fundo preto, confira o projeto no github:</string>
     <string name="build_version">MyPokedex v%1$s</string>
     <string name="unknown_title">Pokemon ?</string>
+    <string name="send">Enviar</string>
+    <string name="empty_edit_text_unknown">Informe o nome do pokemon</string>
+    <string name="unknown_success">Parabéns, você acertou o pokemon!</string>
+    <string name="unknown_error">Você errou, não foi dessa vez!</string>
+    <string name="auto_complete_hint">Digite o nome do pokemon</string>
 </resources>

@@ -4,12 +4,16 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.view.View
+import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
 import com.example.mypokedex.R
 import com.example.mypokedex.contract.UnknownContract
 import com.example.mypokedex.data.UnknownRemoteDataSource
 import com.example.mypokedex.model.Pokemon
+import com.example.mypokedex.model.PokemonNamesList
 import com.example.mypokedex.view.UnknownFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -24,10 +28,10 @@ class UnknownPresenter(
 
     override fun onStart(view: View) {
         this.view.findAllElements(view)
-        this.view.showProgressBar()
     }
 
     override fun findRandomPokemon() {
+        view.showProgressBar()
         val id = Random.nextInt(1,100)
         dataSource.findRandomPokemonById(this,id)
     }
@@ -49,6 +53,28 @@ class UnknownPresenter(
                 view.hideProgressBar()
             }
         }
+    }
+
+    override fun checkResult(autoComplete: AutoCompleteTextView, button: Button, pokemon: Pokemon){
+        if (autoComplete.text.isEmpty()){
+            view.showFailure(view.getString(R.string.empty_edit_text_unknown))
+            return
+        }
+        if(autoComplete.text.toString().toLowerCase() == pokemon.name){
+            view.showResult(view.getString(R.string.unknown_success))
+        } else{
+            view.showResult(view.getString(R.string.unknown_error))
+        }
+        autoComplete.isEnabled = false
+        button.isClickable = false
+    }
+
+    override fun getPokemonNamesList() {
+        dataSource.findPokemonNamesList(this,1000)
+    }
+
+    override fun onSuccessPokeList(pokemonNamesList: PokemonNamesList) {
+        view.setAutoCompleteAdapter(pokemonNamesList.results.map { it.name })
     }
 
     override fun onSuccess(pokemon: Pokemon) {

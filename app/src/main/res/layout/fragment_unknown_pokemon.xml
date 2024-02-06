@@ -1,59 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/unknown_background"
-    android:id="@+id/layout_unknown">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/unknown_title"
-
-        android:textColor="#FFE500"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/layout_image_unknown"
-        app:layout_constraintStart_toStartOf="@id/layout_image_unknown"
-        app:layout_constraintEnd_toEndOf="@id/layout_image_unknown"/>
 
     <LinearLayout
-        android:id="@+id/layout_image_unknown"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.4"
-        android:background="@drawable/unknown_image_bg"
-        android:gravity="center">
+        android:id="@+id/layout_unknown"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <ImageView
-            android:visibility="gone"
-            tools:visibility="visible"
-            android:id="@+id/unknown_image"
+        <TextView
+            android:id="@+id/unknown_poke_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/unknown_title"
+            android:textColor="@color/yellow"
+            android:textSize="46sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/layout_image_unknown"
             android:layout_width="250dp"
             android:layout_height="250dp"
-            android:src="@drawable/poke3"
-            android:scaleType="fitCenter"/>
+            android:background="@drawable/unknown_image_bg">
+
+            <ImageView
+                android:id="@+id/unknown_image"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/poke3"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <ProgressBar
+                android:id="@+id/unknown_progress"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/blue_500"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </FrameLayout>
+
+
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_text_unknown"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLength="20"
+            android:background="@drawable/shape_edit_unknown"
+            android:hint="@string/auto_complete_hint"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@id/layout_image_unknown"
+            app:layout_constraintStart_toStartOf="@id/layout_image_unknown"
+            app:layout_constraintTop_toBottomOf="@id/layout_image_unknown" />
+
+        <Button
+            android:id="@+id/button_send_unknown"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/shape_button_unknown"
+            android:text="@string/send" />
+
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/unknown_progress"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:indeterminateTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/layout_image_unknown"
-        app:layout_constraintEnd_toEndOf="@id/layout_image_unknown"
-        app:layout_constraintStart_toStartOf="@id/layout_image_unknown"
-        app:layout_constraintTop_toTopOf="@id/layout_image_unknown" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

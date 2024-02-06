@@ -39,7 +39,11 @@
         android:label="@string/unknown_pokemon"
         tools:layout="@layout/fragment_unknown_pokemon"
         android:id="@+id/unknown_pokemon_fragment"
-        android:name="com.example.mypokedex.view.UnknownFragment"/>
+        android:name="com.example.mypokedex.view.UnknownFragment">
+        <action
+            android:id="@+id/action_unknown_pokemon_fragment_self"
+            app:destination="@id/unknown_pokemon_fragment" />
+    </fragment>
 
     <fragment
         android:label="@string/about"

@@ -17,4 +17,18 @@ class UnknownRemoteDataSource {
             }
         }
     }
+
+    fun findPokemonNamesList(presenter: UnknownPresenter, lastId: Int){
+        val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
+        GlobalScope.launch(Dispatchers.Main){
+            try {
+                val pokemonNamesList = withContext(Dispatchers.IO){
+                    retrofit.findPokemonNamesList(0,lastId).execute().body()!!
+                }
+                presenter.onSuccessPokeList(pokemonNamesList)
+            } catch (e: Exception) {
+                presenter.onFailure(e.message ?: "Error search data from server")
+            }
+        }
+    }
 }

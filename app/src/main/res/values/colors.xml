@@ -53,8 +53,10 @@
     <color name="red_unknown_center">#B3FF0000</color>
     <color name="red_unknown_end">#66FF0000</color>
 
-    <color name="blue_unknown_start">#6DFFF3</color>
-    <color name="blue_unknown_center">#00CFBE</color>
-    <color name="blue_unknown_end">#005BA3</color>
+    <color name="blue_unknown_start">#86FFF5</color>
+    <color name="blue_unknown_center">#3DFFEF</color>
+    <color name="blue_unknown_end">#002849</color>
+
+    <color name="yellow">#FFE500</color>
 
 </resources>
