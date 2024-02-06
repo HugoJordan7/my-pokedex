@@ -17,6 +17,19 @@ Obs: O aplicativo só funciona com acesso a internet, caso contrário será fech
 - Kotlin
 - Retrofit
 
+# Fundamentos trabalhados
+- Arquitetura MVP (model-view-presenter)
+- Leitura de dados de servidor com API REST usando Retrofit
+- Fragments / NavigationControler
+- Tarefas assíncronas em Threads diferentes com Coroutines
+- Manipulação eficiente de imagens com a biblioteca Picasso
+- Menus personalizados
+- NavigationView
+- Toolbar personalizada
+- AutoCompleteTextView
+- Troca de informações entre fragmentos com Objetos Serializáveis
+- Bitmaps
+
 # Download atualizado (v1.0.0)
 Faça o download clicando [aqui.](https://github.com/HugoJordan7/my-pokedex/raw/main/MyPokedex.apk)
 
