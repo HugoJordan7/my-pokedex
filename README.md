@@ -4,12 +4,12 @@
 |:---:|:---|
 
 Suas funções são:
-- Exibir os dados dos 1000 pokemons de forma sequêncial na tela inicial
+- Exibir os dados dos 1000 pokemons de forma sequencial na tela inicial
 - Fornecer um mecanismo de busca a partir dos nomes dos pokemons para facilitar a pesquisa por um pokemon específico
 - Quando o pokemon é clicado, ele exibe informações mais aprofundadas sobre o pokemon
 - Possui um menu chamado "Quem é esse pokemon?" que é um jogo onde o usuário deve adivinhar qual o nome do pokemon cuja imagem está coberta por um fundo preto.
 
-O app utilizou a api gratuita https://pokeapi.co/ para obter os dados de cada pokemon e as imagens dos tipos foram retiradas do site: https://bulbapedia.bulbagarden.net/wiki/Type#Icons.
+Para obter os dados de cada pokemon foi utilizado a api gratuita https://pokeapi.co/ e as imagens dos tipos foram retiradas do site: https://bulbapedia.bulbagarden.net/wiki/Type#Icons.
 Obs: O aplicativo só funciona com acesso a internet, caso contrário será fechado.
 
 # Tecnologias utilizadas
