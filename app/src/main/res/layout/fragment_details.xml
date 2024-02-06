@@ -23,6 +23,23 @@
             app:layout_constraintBottom_toBottomOf="@id/details_about"/>
 
 
+       <Switch
+           android:id="@+id/shine_button"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="@id/details_about"
+           android:layout_marginTop="20dp"
+           android:layout_marginEnd="50dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/ic_shine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/shine_button"
+            app:layout_constraintStart_toEndOf="@id/shine_button"
+            app:layout_constraintBottom_toBottomOf="@id/shine_button"/>
+
+
         <include layout="@layout/details_header"
             android:id="@+id/details_header" />
 

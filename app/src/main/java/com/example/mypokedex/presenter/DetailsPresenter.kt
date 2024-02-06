@@ -105,19 +105,21 @@ class DetailsPresenter(override var view: DetailsFragment) : DetailsContract.Pre
                 }
             }
         }
-        Log.i("evo","${listEvolutions.size}")
-        for(name in listEvolutions){
-            Log.i("evo","$name")
+
+        if (listEvolutions.size > 1) dataSource.findPokemonList(listEvolutions)
+        else {
+            view.bindEvolutions(emptyList(),1)
+            onComplete()
         }
-        dataSource.findPokemonList(listEvolutions)
     }
 
     fun onSuccessPokemonEvolution(response: List<Pokemon>){
         val listEvolutionItem = response.map { EvolutionItem(
             it.name, it.id, ProjectResources.getPokeImgUrlById(it.id)
         ) }
-        val columns = if (listEvolutionItem.size == 1) 1 else if(listEvolutionItem.size == 2) 2 else 3
+        val columns = if(listEvolutionItem.size == 2) 2 else 3
         view.bindEvolutions(listEvolutionItem,columns)
+        onComplete()
     }
 
 

@@ -57,15 +57,12 @@ class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val pokemonList = listNames.map { async(Dispatchers.IO){
-                    retrofit.findPokemonByName(it).execute().body()!!
+                    retrofit.findPokemonByName(it.toLowerCase()).execute().body()!!
                 } }.awaitAll()
                 presenter.onSuccessPokemonEvolution(pokemonList)
             }catch (e: Exception){
                 presenter.onFailure(e.message ?: errorMessage)
-            } finally {
-                presenter.onComplete()
             }
-
         }
     }
 
