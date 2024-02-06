@@ -32,7 +32,7 @@ class UnknownPresenter(
 
     override fun findRandomPokemon() {
         view.showProgressBar()
-        val id = Random.nextInt(1,1000)
+        val id = Random.nextInt(1,300)
         dataSource.findRandomPokemonById(this,id)
     }
 
