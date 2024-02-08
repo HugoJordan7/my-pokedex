@@ -2,6 +2,7 @@ package com.example.mypokedex.view
 
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -159,6 +160,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     }
 
     override fun showFailure(message: String) {
+        Log.i("pokeback",message)
         Toast.makeText(context(), message, Toast.LENGTH_SHORT).show()
     }
 

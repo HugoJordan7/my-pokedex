@@ -9,17 +9,20 @@ class PokemonRemoteDataSource {
     fun findAllPokemon(presenter: HomeContract.Presenter, firstId: Int, lastId: Int) {
         val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
         val listId = ProjectResources.getListOfRangeId(firstId, lastId)
-        val chunks = listId.chunked(20)
+        val chunks = listId.chunked(5)
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val pokemonList = chunks.flatMap { chunk ->
-                    chunk.map { async(Dispatchers.IO) {
-                        val pokemon = retrofit.findPokemonById(it).execute().body()!!
-                        pokemon.specie =
-                            retrofit.findPokemonSpecieById(pokemon.id).execute().body()!!
-                        pokemon
-                    } }.awaitAll()
+                val deferred = chunks.map { chunk ->
+                    async(Dispatchers.IO) {
+                        chunk.map{
+                            val pokemon = retrofit.findPokemonById(it).execute().body()!!
+                            pokemon.specie =
+                                retrofit.findPokemonSpecieById(pokemon.id).execute().body()!!
+                            pokemon
+                        }
+                    }
                 }
+                val pokemonList = deferred.awaitAll().flatten()
                 presenter.onSuccess(pokemonList)
             } catch (e: Exception) {
                 presenter.onFailure(e.message ?: "Error search data from server")
