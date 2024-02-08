@@ -30,7 +30,7 @@ Obs: O aplicativo só funciona com acesso a internet, caso contrário será fech
 - Troca de informações entre fragmentos com Objetos Serializáveis
 - Bitmaps
 
-# Download atualizado (v1.0.0)
+# Download atualizado (v1.0.1)
 Faça o download clicando [aqui.](https://github.com/HugoJordan7/my-pokedex/raw/main/MyPokedex.apk)
 
 # Visualização

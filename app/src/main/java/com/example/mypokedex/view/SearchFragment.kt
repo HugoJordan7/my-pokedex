@@ -20,7 +20,7 @@ import com.example.mypokedex.presenter.SearchPresenter
 import com.xwray.groupie.GroupieAdapter
 import okhttp3.internal.notifyAll
 
-class SearchFragment: Fragment(), SearchContract.View {
+class SearchFragment : Fragment(), SearchContract.View {
 
     override lateinit var presenter: SearchPresenter
 
@@ -39,8 +39,12 @@ class SearchFragment: Fragment(), SearchContract.View {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +60,8 @@ class SearchFragment: Fragment(), SearchContract.View {
     }
 
     override fun showSearchPokemon(pokemonList: List<PokemonItem>) {
-        adapter.apply {addAll(pokemonList); notifyDataSetChanged()}
+        adapter.addAll(pokemonList)
+        adapter.notifyDataSetChanged()
     }
 
     override fun context() = requireContext()
@@ -78,7 +83,7 @@ class SearchFragment: Fragment(), SearchContract.View {
     }
 
     override fun showFailure(message: String) {
-        Toast.makeText(context(),message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(context(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -88,9 +93,10 @@ class SearchFragment: Fragment(), SearchContract.View {
         searchItem.expandActionView()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query == null){
-                    Toast.makeText(requireContext(), "The query is empty!", Toast.LENGTH_SHORT).show()
-                }else{
+                if (query == null) {
+                    Toast.makeText(requireContext(), "The query is empty!", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
                     adapter.clear()
                     presenter.findAllPokemonByName(query)
                 }

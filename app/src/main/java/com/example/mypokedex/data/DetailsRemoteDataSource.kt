@@ -28,15 +28,12 @@ class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
                 }
             } catch (e: Exception){
                 presenter.onFailure(e.message ?: errorMessage)
-            } finally {
-                presenter.onComplete()
             }
         }
     }
 
     fun findEvolutions(url: String){
         val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
-
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val evolutions = async(Dispatchers.IO){
@@ -45,10 +42,7 @@ class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
                 presenter.onSuccessEvolutions(evolutions)
             }catch (e: Exception){
                 presenter.onFailure(e.message ?: errorMessage)
-            } finally {
-                presenter.onComplete()
             }
-
         }
     }
 

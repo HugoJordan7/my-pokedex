@@ -66,12 +66,12 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.onStart(view)
-        presenter.findWeaknesses(pokemon)
         presenter.findEvolutions(pokemon)
+        presenter.findWeaknesses(pokemon)
         shineButton.setOnCheckedChangeListener { _, isChecked ->
-            val imageUrl = if(isChecked){
+            val imageUrl = if (isChecked) {
                 ProjectResources.getPokeImgShineUrlById(pokemon.id)
-            }else{
+            } else {
                 ProjectResources.getPokeImgUrlById(pokemon.id)
             }
             Picasso.get().load(imageUrl).into(pokemonIcon)
@@ -124,31 +124,29 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         rvStatus.adapter = adapterStatus
     }
 
-    fun bindWeaknesses(weakTypesList: List<String>){
-        rvWeaknesses.layoutManager = GridLayoutManager(context(),2)
+    fun bindWeaknesses(weakTypesList: List<String>) {
+        rvWeaknesses.layoutManager = GridLayoutManager(context(), 2)
         val weakAdapter = GroupieAdapter()
         rvWeaknesses.adapter = weakAdapter
         weakAdapter.addAll(TypeItem.getTypeItemListByNames(weakTypesList))
         weakAdapter.notifyDataSetChanged()
     }
 
-    fun bindEvolutions(list: List<EvolutionItem>, columns: Int){
-        if(columns > 1) {
-            layoutEvolutions.visibility = View.VISIBLE
-            var gradient = ContextCompat.getDrawable(
-                context(),
-                R.drawable.evolutions_shape
-            ) as GradientDrawable
-            val color = ProjectResources.getEvolutionTheme(
-                pokemon.specie?.color?.name ?: "black",
-                context()
-            )
-            gradient.setColor(color)
-            layoutRvEvo.background = gradient
-            rvEvolutions.layoutManager = GridLayoutManager(context(), columns)
-            rvEvolutions.adapter = EvolutionAdapter(list, context())
-
-        }
+    fun bindEvolutions(list: List<EvolutionItem>, columns: Int) {
+        layoutEvolutions.visibility = View.VISIBLE
+        var gradient = ContextCompat.getDrawable(
+            context(),
+            R.drawable.evolutions_shape
+        ) as GradientDrawable
+        val color = ProjectResources.getEvolutionTheme(
+            pokemon.specie?.color?.name ?: "black",
+            context()
+        )
+        gradient.setColor(color)
+        layoutRvEvo.background = gradient
+        rvEvolutions.layoutManager = GridLayoutManager(context(), columns)
+        rvEvolutions.adapter = EvolutionAdapter(list, context())
+        presenter.onComplete()
     }
 
     override fun showProgressBar() {
@@ -160,7 +158,6 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     }
 
     override fun showFailure(message: String) {
-        Log.i("pokeback",message)
         Toast.makeText(context(), message, Toast.LENGTH_SHORT).show()
     }
 
