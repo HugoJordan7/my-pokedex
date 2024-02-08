@@ -24,13 +24,15 @@ class HomePresenter(
     }
 
     override fun loadMorePokemon(currentId: Int) {
-        var lastId = currentId + HomeUtils.RANGE-1
+        val lastId = currentId + HomeUtils.RANGE-1
         findAllPokemon(currentId, lastId)
     }
 
     override fun onSuccess(response: List<Pokemon>) {
-        var list = response.map { PokemonItem(it, view) }
-        view.showPokemon(list)
+        if(view.isVisible){
+            val list = response.map { PokemonItem(it, view) }
+            view.showPokemon(list)
+        }
     }
 
     override fun onFailure(message: String) {
