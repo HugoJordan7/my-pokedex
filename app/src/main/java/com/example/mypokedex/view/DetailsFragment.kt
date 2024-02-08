@@ -66,8 +66,8 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.onStart(view)
-        presenter.findEvolutions(pokemon)
         presenter.findWeaknesses(pokemon)
+        presenter.findEvolutions(pokemon)
         shineButton.setOnCheckedChangeListener { _, isChecked ->
             val imageUrl = if (isChecked) {
                 ProjectResources.getPokeImgShineUrlById(pokemon.id)

@@ -1,11 +1,8 @@
 package com.example.mypokedex.data
 
-import com.example.mypokedex.model.Pokemon
 import com.example.mypokedex.model.Type
 import com.example.mypokedex.presenter.DetailsPresenter
 import kotlinx.coroutines.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
 
@@ -36,9 +33,9 @@ class DetailsRemoteDataSource(private val presenter: DetailsPresenter) {
         val retrofit = HTTPData.retrofit().create(PokeAPI::class.java)
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val evolutions = async(Dispatchers.IO){
+                val evolutions = withContext(Dispatchers.IO) {
                     retrofit.findEvolutionChainByUrl(url).execute().body()!!
-                }.await()
+                }
                 presenter.onSuccessEvolutions(evolutions)
             }catch (e: Exception){
                 presenter.onFailure(e.message ?: errorMessage)
